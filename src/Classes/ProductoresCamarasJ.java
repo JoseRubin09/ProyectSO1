@@ -6,6 +6,8 @@
 package Classes;
 
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,17 +15,29 @@ import java.util.concurrent.Semaphore;
  */
 public class ProductoresCamarasJ extends Thread{
     
-    public Semaphore semMain;
-    public Semaphore mutex;
     public boolean stop;
-    public ProductoresCamarasJ (Semaphore semMain, int numero){
-        this.semMain = semMain;
+    public int numero;
+    public ProductoresCamarasJ (Semaphore semCamsJ, int numero){
         this.stop = true;
         
     }
     
+    public void stopToggle(){
+        this.stop = !this.stop;
+    }
     @Override
+    
     public void run(){
-        System.out.println("A");
+        while (this.stop){
+            try {
+                Main.semCamarasJ.acquire(1);
+                Main.maxCamsJ--;
+                Main.semCamarasJ.acquire(1);
+                Main.maxCamsJ--;
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ProductoresCamarasJ.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
