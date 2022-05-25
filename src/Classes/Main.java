@@ -23,6 +23,8 @@ public class Main {
     public static volatile int maxBotones=45;
     public static volatile int maxPantallas=40;
     
+    
+    
     public static Semaphore sem1 = new Semaphore(5);
     public static JefeJ jefeJ;
     public static GerenteJ gerenteJ;
@@ -34,6 +36,9 @@ public class Main {
     
     public static void main(String[] args) {
         // TODO code application logic here
+        
+    
+    
     }
     
 }
