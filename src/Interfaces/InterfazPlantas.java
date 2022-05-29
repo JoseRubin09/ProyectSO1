@@ -374,8 +374,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
         });
         jPanel3.add(AlmacenPantallasP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 20, 20));
 
-        jLabel30.setText("Pines de Carga");
-        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, -1, -1));
+        jLabel30.setText("Pines Carga");
+        jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, -1, -1));
 
         AlmacenPinesP2.setText("1");
         AlmacenPinesP2.addActionListener(new java.awt.event.ActionListener() {
@@ -389,7 +389,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, -1, -1));
 
         jLabel32.setText("Telefonos");
-        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, -1, -1));
+        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
         TelefonosPlanta2.setText("1");
         TelefonosPlanta2.addActionListener(new java.awt.event.ActionListener() {
@@ -397,7 +397,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
                 TelefonosPlanta2ActionPerformed(evt);
             }
         });
-        jPanel3.add(TelefonosPlanta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, 70, 30));
+        jPanel3.add(TelefonosPlanta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 70, 30));
 
         BotonSumEnsam2.setText("+");
         BotonSumEnsam2.addActionListener(new java.awt.event.ActionListener() {
@@ -483,8 +483,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel12.setText("Productores de Camaras");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 
-        jLabel13.setText("Pines de Carga");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, -1, -1));
+        jLabel13.setText("Pines Carga");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, -1, -1));
 
         jLabel14.setText("Productores de Pantallas");
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));

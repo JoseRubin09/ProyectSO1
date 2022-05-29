@@ -19,8 +19,9 @@ public class EnsambladoresJ extends Thread{
     public Semaphore mutex;
     public boolean stop;
     public int numero;
-    public EnsambladoresJ (Semaphore semMain){
+    public EnsambladoresJ (Semaphore semMain, Semaphore semMutex){
         this.semMain = semMain;
+        this.mutex = semMutex;
         this.stop = true;
         
     }

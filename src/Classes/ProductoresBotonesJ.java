@@ -16,9 +16,10 @@ public class ProductoresBotonesJ extends Thread{
     
     public boolean stop;
     public int numero;
-    public ProductoresBotonesJ (Semaphore semBotonesJ, int numero){
+    public Semaphore mutex;
+    public ProductoresBotonesJ (Semaphore semBotonesJ, int numero, Semaphore semBotonsMutex){
         this.stop = true;
-        
+        this.mutex = semBotonsMutex;
     }
     
     public void stopToggle(){
@@ -29,10 +30,14 @@ public class ProductoresBotonesJ extends Thread{
     public void run(){
         while (this.stop){
             try {
+                mutex.acquire();
                 Main.semBotonesJ.acquire(1);
                 Main.maxBotonesJ--;
+                mutex.release();
+                mutex.acquire();
                 Main.semBotonesJ.acquire(1);
                 Main.maxBotonesJ--;
+                mutex.release();
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProductoresBotonesJ.class.getName()).log(Level.SEVERE, null, ex);
