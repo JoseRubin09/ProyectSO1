@@ -55,14 +55,21 @@ public class Main {
     public static volatile int almacenPinesM = 0;
     public static int numProductoresPines=5;
     
-    
-    //Productor Camara
-    /*
+    //Rubin Variables
+    public static Semaphore semBotonesJ = new Semaphore(45);
+    public static Semaphore semCamarasJ = new Semaphore(20);
+    public static Semaphore semPantJ = new Semaphore(40);
+    public static Semaphore mutexBotons = new Semaphore(1);
+    public static Semaphore mutexPants = new Semaphore(1);
+    public static Semaphore mutexCams = new Semaphore(1);
+    public static volatile int maxBotonesJ = 45;
+    public static volatile int maxCamsJ = 20;
+    public static volatile int maxPantJ = 40;
+
     public static volatile int countdown=30;
     public static volatile int maxCamaras=20;
     public static volatile int maxBotones=45;
     public static volatile int maxPantallas=40;
-    
     
     
     public static Semaphore sem1 = new Semaphore(5);
@@ -77,41 +84,18 @@ public class Main {
 
     public static ProductoresCamarasJ producCamsJ;
     public static ProductoresPantallasJ producPantJ;
-    //Variables de Maximo Rubin
-    public static Semaphore semBotonesJ = new Semaphore(45);
-    public static Semaphore semCamarasJ = new Semaphore(20);
-    public static Semaphore semPantJ = new Semaphore(40);
-    public static Semaphore test = new Semaphore(1);
-    public static volatile int maxBotonesJ = 45;
-    public static volatile int maxCamsJ = 20;
-    public static volatile int maxPantJ = 40;
+
     
     
     public static void main(String[] args) {
         // TODO code application logic here
-        producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ);
-        producBotonesJ2 = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ);
-        producBotonesJ3 = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ);
-        producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ);
-        producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ);
+        producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ, mutexBotons);
+        producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ, mutexPants);
+        producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ, mutexCams);
         producBotonesJ.start();
         producCamsJ.start();
         producPantJ.start();
-//        try {
-//            test.acquire(1);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    public static ProductoresCamarasJ producCams;
-    public static ProductoresPantallasJ producScreens;
-     */
-    
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
         
-    
-            
         for (int i = 0; i < numProductoresBotones; i++) {
             
  
@@ -148,20 +132,6 @@ public class Main {
 
             
         }
-            /*
-        System.out.println("hola");
-
-        while (maxPantallas>1 && true){
-            maxPantallas--;
-            System.out.println("Quito pantalla");
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    
-        }    
-    */
     
     
 

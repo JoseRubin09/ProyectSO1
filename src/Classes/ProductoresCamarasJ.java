@@ -17,8 +17,10 @@ public class ProductoresCamarasJ extends Thread{
     
     public boolean stop;
     public int numero;
-    public ProductoresCamarasJ (Semaphore semCamsJ, int numero){
+    public Semaphore mutex;
+    public ProductoresCamarasJ (Semaphore semCamsJ, int numero, Semaphore semCamsMutex){
         this.stop = true;
+        this.mutex = semCamsMutex;
         
     }
     
