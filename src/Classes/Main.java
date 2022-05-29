@@ -21,6 +21,12 @@ public class Main {
      * @param args the command line arguments
      */
     
+    public static volatile int countdownPlantaJ=30;
+    public static volatile int countdownPlantaM=30;
+    
+    
+   //Variables Rubin
+
     //Productor Pantalla
     public static Semaphore semPantallas = new Semaphore(40);
     public static ProductoresPantallasM ThreadPantallas;
@@ -60,11 +66,42 @@ public class Main {
     
     
     public static Semaphore sem1 = new Semaphore(5);
+
     public static JefeJ jefeJ;
     public static GerenteJ gerenteJ;
     public static EnsambladoresJ assemblerJ;
-    public static ProductoresBotonesJ producBotons;
+    public static ProductoresBotonesJ producBotonesJ;
+    public static ProductoresBotonesJ producBotonesJ2;
+    public static ProductoresBotonesJ producBotonesJ3;
     public static ProductoresPinesJ producPins;
+
+    public static ProductoresCamarasJ producCamsJ;
+    public static ProductoresPantallasJ producPantJ;
+    //Variables de Maximo Rubin
+    public static Semaphore semBotonesJ = new Semaphore(45);
+    public static Semaphore semCamarasJ = new Semaphore(20);
+    public static Semaphore semPantJ = new Semaphore(40);
+    public static Semaphore test = new Semaphore(1);
+    public static volatile int maxBotonesJ = 45;
+    public static volatile int maxCamsJ = 20;
+    public static volatile int maxPantJ = 40;
+    
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ);
+        producBotonesJ2 = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ);
+        producBotonesJ3 = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ);
+        producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ);
+        producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ);
+        producBotonesJ.start();
+        producCamsJ.start();
+        producPantJ.start();
+//        try {
+//            test.acquire(1);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     public static ProductoresCamarasJ producCams;
     public static ProductoresPantallasJ producScreens;
      */
@@ -127,6 +164,7 @@ public class Main {
     */
     
     
+
     }
 
     
