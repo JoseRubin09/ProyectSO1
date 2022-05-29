@@ -17,8 +17,10 @@ public class ProductoresPantallasJ extends Thread{
     
     public boolean stop;
     public int numero;
-    public ProductoresPantallasJ (Semaphore semPantJ, int numero){
+    public Semaphore mutex;
+    public ProductoresPantallasJ (Semaphore semPantJ, int numero, Semaphore semPantsMutex){
         this.stop = true;
+        this.mutex = semPantsMutex;
         
     }
     
@@ -30,10 +32,14 @@ public class ProductoresPantallasJ extends Thread{
     public void run(){
         while (this.stop){
             try {
+                mutex.acquire();
                 Main.semPantJ.acquire(1);
                 Main.maxPantJ--;
+                mutex.release();
+                mutex.acquire();
                 Main.semPantJ.acquire(1);
                 Main.maxPantJ--;
+                mutex.release();
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProductoresPantallasJ.class.getName()).log(Level.SEVERE, null, ex);

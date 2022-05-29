@@ -16,8 +16,7 @@ public class ProductoresPinesJ extends Thread{
     public Semaphore semMain;
     public Semaphore mutex;
     public boolean stop;
-    public ProductoresPinesJ (Semaphore semMain, int numero){
-        this.semMain = semMain;
+    public ProductoresPinesJ (){
         this.stop = true;
         
     }
