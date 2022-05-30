@@ -5,6 +5,7 @@
  */
 package Classes;
 
+import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,10 +18,9 @@ public class ProductoresPantallasJ extends Thread{
     
     public boolean stop;
     public int numero;
-    public Semaphore mutex;
-    public ProductoresPantallasJ (Semaphore semPantJ, int numero, Semaphore semPantsMutex){
+    public ProductoresPantallasJ (int threadNum){
         this.stop = true;
-        this.mutex = semPantsMutex;
+        this.numero = threadNum;
         
     }
     
@@ -32,15 +32,12 @@ public class ProductoresPantallasJ extends Thread{
     public void run(){
         while (this.stop){
             try {
-                mutex.acquire();
                 Main.semPantJ.acquire(1);
-                Main.maxPantJ--;
-                mutex.release();
-                mutex.acquire();
-                Main.semPantJ.acquire(1);
-                Main.maxPantJ--;
-                mutex.release();
-                Thread.sleep(1000);
+                Main.mutexPants.acquire();
+                Main.maxPantJ++;
+                InterfazPlantas.AlmacenPantallasP1.setText(Integer.toString(Main.maxPantJ));
+                Main.mutexPants.release();
+                Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProductoresPantallasJ.class.getName()).log(Level.SEVERE, null, ex);
             }

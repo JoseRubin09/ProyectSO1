@@ -5,7 +5,7 @@
  */
 package Classes;
 
-import java.util.concurrent.Semaphore;
+import Interfaces.InterfazPlantas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -16,10 +16,9 @@ public class ProductoresBotonesJ extends Thread{
     
     public boolean stop;
     public int numero;
-    public Semaphore mutex;
-    public ProductoresBotonesJ (Semaphore semBotonesJ, int numero, Semaphore semBotonsMutex){
+    public ProductoresBotonesJ (int threadNum){
         this.stop = true;
-        this.mutex = semBotonsMutex;
+        this.numero = threadNum;
     }
     
     public void stopToggle(){
@@ -30,15 +29,12 @@ public class ProductoresBotonesJ extends Thread{
     public void run(){
         while (this.stop){
             try {
-                mutex.acquire();
-                Main.semBotonesJ.acquire(1);
-                Main.maxBotonesJ--;
-                mutex.release();
-                mutex.acquire();
-                Main.semBotonesJ.acquire(1);
-                Main.maxBotonesJ--;
-                mutex.release();
-                Thread.sleep(1000);
+                Main.mutexBotons.acquire();
+                Main.semBotonesJ.acquire();
+                Main.maxBotonesJ++;
+                InterfazPlantas.AlmacenBotonesP1.setText(Integer.toString(Main.maxBotonesJ));
+                Main.mutexBotons.release();
+                Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProductoresBotonesJ.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -6,6 +6,8 @@
 package Classes;
 
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,16 +16,22 @@ import java.util.concurrent.Semaphore;
 public class JefeJ extends Thread{
     
     public Semaphore semMain;
-    public Semaphore mutex;
+    public static Semaphore mutex = new Semaphore(1);
     public boolean stop;
-    public JefeJ (Semaphore semMain){
-        this.semMain = semMain;
+    public JefeJ (){
         this.stop = true;
         
     }
     
     @Override
     public void run(){
-        System.out.println("A");
+        while(this.stop){
+            try {
+                mutex.acquire();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(JefeJ.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }
 }
