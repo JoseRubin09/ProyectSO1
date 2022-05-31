@@ -5,6 +5,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Interfaces.InterfazPlantas;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,12 +27,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
-    public static volatile int countdownPlantaJ=30;
-    public static volatile int countdownPlantaM=30;
+    public static int tiempoDia;
+    public static int despachoDias;
     
-    
-   //Variables Rubin
-
     //Productor Pantalla
     public static Semaphore semPantallas = new Semaphore(40);
     public static ProductoresPantallasM ThreadPantallas;
@@ -56,9 +59,9 @@ public class Main {
     public static int numProductoresPines=5;
     
     //Rubin Variables
-    public static Semaphore semBotonesJ = new Semaphore(45);
     public static Semaphore semCamarasJ = new Semaphore(20);
     public static Semaphore semPantJ = new Semaphore(40);
+    public static Semaphore semBotonesJ = new Semaphore(45);
     public static Semaphore mutexBotons = new Semaphore(1);
     public static Semaphore mutexPants = new Semaphore(1);
     public static Semaphore mutexCams = new Semaphore(1);
@@ -70,6 +73,9 @@ public class Main {
     public static volatile int maxPantJ = 0;
     public static volatile int numPines = 0;
     public static volatile int numTelef = 0;
+    public static volatile int almcenMaxBotonesJ;
+    public static volatile int almcenMaxPantJ;
+    public static volatile int almcenMaxCamsJ;
 
     public static volatile int countdown=30;
     
@@ -80,13 +86,56 @@ public class Main {
     public static ProductoresPinesJ producPins;
     public static ProductoresCamarasJ producCamsJ;
     public static ProductoresPantallasJ producPantJ;
+    public static ReadFile txtAction = new ReadFile();
+    
+    ArrayList dataList = new ArrayList();
 
+   
     
     
     public static void main(String[] args) {
-        // TODO code application logic here
         
+        // TODO code application logic here
+
+        JSONArray data = txtAction.readJson("src\\Files\\DataPlantas.json");
+        Map<String, Object> map = (Map<String, Object>) data.get(0);
+        for (String key : map.keySet())
+            switch(key){
+                case "tiempoDia": 
+                    tiempoDia = (Integer)map.get(key);
+                    break;
+                case "despachoDias":
+                    despachoDias = (Integer)map.get(key);
+                    break;
+                case "almacenBotonesPlanta1":
+                    almcenMaxBotonesJ = (Integer)map.get(key);
+                    break;
+                case "almacenPantsPlanta1":
+                    almcenMaxPantJ = (Integer)map.get(key);
+                    break;
+                case "almacenCamsPlanta1":
+                    almcenMaxCamsJ = (Integer)map.get(key);
+                    break;
+                case "ensambladoresPlanta1":
+                    despachoDias = (Integer)map.get(key);
+                    break;
+                case "almacenBotonesPlanta2":
+                    despachoDias = (Integer)map.get(key);
+                    break;
+                case "almacenPantsPlanta2":
+                    despachoDias = (Integer)map.get(key);
+                    break;
+                case "almacenCamsPlanta2":
+                    despachoDias = (Integer)map.get(key);
+                    break;
+                case "ensambladoresPlanta2":
+                    despachoDias = (Integer)map.get(key);
+                    break;
+            }
+            
+
         InterfazGrafica.setVisible(true);
+        
         //Threads Rubin
 //        for (int i = 0; i < InterfazGrafica.numEnsamJ; i++) {
 //            ensamblador = new EnsambladoresJ(InterfazGrafica.numEnsamJ);
