@@ -32,7 +32,7 @@ public class EnsambladoresJ extends Thread{
     public void run(){
         while (this.stop){
         try {
-            while(Main.countdown > 0){
+            while(Main.countdownPlantaJ > 0){
                 Main.mutexAssemb.acquire();
                 if (Main.maxBotonesJ >= 2 && Main.maxCamsJ >= 2 && Main.maxPantJ >= 1 && Main.numPines >= 1){
                     

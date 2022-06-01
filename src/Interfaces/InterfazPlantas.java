@@ -65,6 +65,7 @@ import static Classes.Main.producNumPantJ;
 import static Classes.Main.producNumPinesJ;
 import static Classes.Main.producPantJ;
 import static Classes.Main.producPins;
+import static Classes.Main.tiempoDia;
 import Classes.ProductoresBotonesJ;
 import Classes.ProductoresCamarasJ;
 import Classes.ProductoresPantallasJ;
@@ -84,6 +85,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
     /**
      * Creates new form InterfazPlantas
      */
+    public int tDia = tiempoDia;
     public int t = 0;
     public int numEnsamJ;
     public int numProducBotJ = producNumBotonesJ;
@@ -1080,6 +1082,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
+        
         for (int i = 0; i < numEnsamJ; i++) {
             ensamblador = new EnsambladoresJ(numEnsamJ);
             ensamblador.start();
