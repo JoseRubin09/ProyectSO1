@@ -29,12 +29,9 @@ public class Main {
      */
     public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
     public static int tiempoDia;
-    public static int countdown;
     public static volatile int countdownPlantaJ=30;
     public static volatile int countdownPlantaM=30;
     
-   //Variables Rubin
-
     //Productor Pantalla yaaaa
     public static Semaphore semPantallas = new Semaphore(10);
     //Productor Pantalla
@@ -102,6 +99,7 @@ public class Main {
     public static volatile int maxCamsJ = 0;
     public static volatile int maxPantJ = 0;
     public static volatile int numPines = 0;
+    public static volatile int numEnsamblador;
     
     //Rubin Numero de productores
     public static volatile int producNumBotonesJ;
@@ -127,31 +125,9 @@ public class Main {
     public static ProductoresCamarasJ producCamsJ;
     public static ProductoresPantallasJ producPantJ;
     public static ReadFile txtAction = new ReadFile();
-    
     ArrayList dataList = new ArrayList();
 
-   
-    
-    
     public static void main(String[] args) {
-        // TODO code application logic here
-        //producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ, mutexBotons);
-        //producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ, mutexPants);
-        //producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ, mutexCams);
-        //producBotonesJ.start();
-        //producCamsJ.start();
-        //producPantJ.start();
-
-        
-        //InterfazPlantas.AlmacenPantallasP2.setText(Integer.toString(Main.almacenPantallasM));
-        //InterfazPlantas.AlmacenCamsP2.setText(Integer.toString(Main.almacenCamarasM));
-        //InterfazPlantas.AlmacenBotonesP2.setText(Integer.toString(Main.almacenBotonesM));
-        //InterfazPlantas.AlmacenPinesP2.setText(Integer.toString(Main.almacenPinesM));
-        //InterfazPlantas.TelefonosPlanta2.setText(Integer.toString(Main.almacenTelefonosM));
-        
- 
-    
-        
         // TODO code application logic here
         JSONArray data = txtAction.readJson("src\\Files\\DataPlantas.json");
         Map<String, Object> map = (Map<String, Object>) data.get(0);
@@ -161,12 +137,13 @@ public class Main {
                     tiempoDia = Integer.valueOf((String)map.get(key));
                     break;
                 case "countdown":
-                    countdown = Integer.valueOf((String)map.get(key));
+                    countdownPlantaJ = Integer.valueOf((String)map.get(key));
+                    countdownPlantaM = Integer.valueOf((String)map.get(key));
                     break;
                 case "almacenBotonesPlanta1":
                     almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));
                     break;
-                case "producBotonesPlanta1":
+                case "producBotonesPlanta2":
                     almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));
                     break;
                 case "almacenPantsPlanta1":
@@ -181,26 +158,23 @@ public class Main {
                 case "producCamsPlanta1":
                     almcenMaxCamsJ = Integer.valueOf((String)map.get(key));
                     break;
-//                case "ensambladoresPlanta1":
-//                    ensambladores = Integer.valueOf((String)map.get(key));
-//                    break;
-//                case "almacenBotonesPlanta2":
-//                    almacenCamarasM = Integer.valueOf((String)map.get(key));
-//                    break;
-//                case "almacenPantsPlanta2":
-//                    despachoDias = Integer.valueOf((String)map.get(key));
-//                    break;
-//                case "almacenCamsPlanta2":
-//                    almacenCamarasM = Integer.valueOf((String)map.get(key));
-//                    break;
-//                case "ensambladoresPlanta2":
-//                    despachoDias = Integer.valueOf((String)map.get(key));
-//                    break;
+                case "ensambladoresPlanta1":
+                    numEnsamblador = Integer.valueOf((String)map.get(key));
+                    break;
+                case "almacenBotonesPlanta2":
+                    almacenBotonesM = Integer.valueOf((String)map.get(key));
+                    break;
+                case "almacenPantsPlanta2":
+                    almacenPantallasM = Integer.valueOf((String)map.get(key));
+                    break;
+                case "almacenCamsPlanta2":
+                    almacenCamarasM = Integer.valueOf((String)map.get(key));
+                    break;
+                case "ensambladoresPlanta2":
+                    numEnsambladoresM = Integer.valueOf((String)map.get(key));
+                    break;
             }
             
         InterfazGrafica.setVisible(true);
     }
-
-    
-    
 }
