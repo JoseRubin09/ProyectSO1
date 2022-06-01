@@ -1192,7 +1192,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private javax.swing.JTextField TextGerentePlanta4;
     public static javax.swing.JTextField TextJefePlanta3;
     public static javax.swing.JTextField TextJefePlanta5;
-    private javax.swing.JTextField TextJefePlanta6;
     private javax.swing.JTextField TiempoDias;
     public static javax.swing.JTextField UltimoLote2;
     private javax.swing.JButton jButton1;
