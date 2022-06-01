@@ -30,25 +30,14 @@ public class Main {
     public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
     public static int tiempoDia;
     public static int countdown;
-    
-<<<<<<< HEAD
     public static volatile int countdownPlantaJ=30;
     public static volatile int countdownPlantaM=30;
-    
-    
-    public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
-    
-    
-    
     
    //Variables Rubin
 
     //Productor Pantalla yaaaa
     public static Semaphore semPantallas = new Semaphore(10);
-=======
     //Productor Pantalla
-    public static Semaphore semPantallas = new Semaphore(40);
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
     public static ProductoresPantallasM ThreadPantallas;
     public static Semaphore mutexPantallas = new Semaphore(1);
     public static volatile int almacenPantallasM =0;
@@ -146,7 +135,6 @@ public class Main {
     
     public static void main(String[] args) {
         // TODO code application logic here
-<<<<<<< HEAD
         //producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ, mutexBotons);
         //producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ, mutexPants);
         //producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ, mutexCams);
@@ -165,9 +153,6 @@ public class Main {
     
         
         // TODO code application logic here
-=======
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
-
         JSONArray data = txtAction.readJson("src\\Files\\DataPlantas.json");
         Map<String, Object> map = (Map<String, Object>) data.get(0);
         for (String key : map.keySet())
@@ -214,14 +199,6 @@ public class Main {
             }
             
         InterfazGrafica.setVisible(true);
-        
-       
-
-<<<<<<< HEAD
-=======
-    
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
-
     }
 
     

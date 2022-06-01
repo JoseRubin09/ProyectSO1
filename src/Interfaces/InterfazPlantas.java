@@ -5,8 +5,6 @@
  */
 package Interfaces;
 
-<<<<<<< HEAD
-=======
 import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
 import Classes.JefeJ;
@@ -27,7 +25,6 @@ import Classes.ProductoresCamarasJ;
 import Classes.ProductoresPantallasJ;
 import Classes.ProductoresPinesJ;
 import com.sun.tools.javac.Main;
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
 import Classes.EnsambladoresM;
 import Classes.GerenteM;
 import Classes.JefeM;
@@ -53,7 +50,6 @@ import Classes.ProductoresBotonesM;
 import Classes.ProductoresCamarasM;
 import Classes.ProductoresPantallasM;
 import Classes.ProductoresPinesM;
-<<<<<<< HEAD
 import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
 import Classes.JefeJ;
@@ -74,8 +70,6 @@ import Classes.ProductoresCamarasJ;
 import Classes.ProductoresPantallasJ;
 import Classes.ProductoresPinesJ;
 import com.sun.tools.javac.Main;
-=======
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,21 +84,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
     /**
      * Creates new form InterfazPlantas
      */
-<<<<<<< HEAD
-    public int numProducBotJ;
     public int t = 0;
-=======
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
     public int numEnsamJ;
     public int numProducBotJ = producNumBotonesJ;
     public int numProducPantJ = producNumPantJ;
     public int numProducCamJ = producNumCamsJ;
     public int numProducPinesJ = producNumPinesJ;
     public int countdown;
-<<<<<<< HEAD
-=======
-    public int t = 0;
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
     public InterfazPlantas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -761,12 +747,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosEnsam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam1ActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
         if(numProducBotJ > 1){
             numProducBotJ--;
             Ensambladores1.setText(Integer.toString(numProducBotJ));
-=======
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
+        }
         // Botones Menos
         if(numEnsamJ >= 1){
             numEnsamJ--;
@@ -949,7 +933,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UltimoLote1ActionPerformed
 
-    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {                                      
         // TODO add your handling code here:
         for (int i = 0; i < numEnsamJ; i++) {
             ensamblador = new EnsambladoresJ(numEnsamJ);
@@ -1045,23 +1029,12 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
             
         }
-        
-<<<<<<< HEAD
- 
-    }//GEN-LAST:event_jButton2ActionPerformed
         for (int i = 0; i < numEnsamJ; i++) {
             ensamblador = new EnsambladoresJ(numEnsamJ);
             ensamblador.start();
         }
-=======
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
-        
-    }//GEN-LAST:event_startActionPerformed
-<<<<<<< HEAD
-=======
+    }                                     
                                           
->>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
-
     private void TiempoDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiempoDiasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TiempoDiasActionPerformed
