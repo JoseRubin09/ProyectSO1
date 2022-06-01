@@ -30,9 +30,14 @@ public class Main {
     public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
     public static int tiempoDia;
     public static int countdown;
+    public static volatile int countdownPlantaJ=30;
+    public static volatile int countdownPlantaM=30;
     
+   //Variables Rubin
+
+    //Productor Pantalla yaaaa
+    public static Semaphore semPantallas = new Semaphore(10);
     //Productor Pantalla
-    public static Semaphore semPantallas = new Semaphore(40);
     public static ProductoresPantallasM ThreadPantallas;
     public static Semaphore mutexPantallas = new Semaphore(1);
     public static volatile int almacenPantallasM =0;
@@ -129,9 +134,25 @@ public class Main {
     
     
     public static void main(String[] args) {
+        // TODO code application logic here
+        //producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ, mutexBotons);
+        //producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ, mutexPants);
+        //producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ, mutexCams);
+        //producBotonesJ.start();
+        //producCamsJ.start();
+        //producPantJ.start();
+
+        
+        //InterfazPlantas.AlmacenPantallasP2.setText(Integer.toString(Main.almacenPantallasM));
+        //InterfazPlantas.AlmacenCamsP2.setText(Integer.toString(Main.almacenCamarasM));
+        //InterfazPlantas.AlmacenBotonesP2.setText(Integer.toString(Main.almacenBotonesM));
+        //InterfazPlantas.AlmacenPinesP2.setText(Integer.toString(Main.almacenPinesM));
+        //InterfazPlantas.TelefonosPlanta2.setText(Integer.toString(Main.almacenTelefonosM));
+        
+ 
+    
         
         // TODO code application logic here
-
         JSONArray data = txtAction.readJson("src\\Files\\DataPlantas.json");
         Map<String, Object> map = (Map<String, Object>) data.get(0);
         for (String key : map.keySet())
@@ -177,76 +198,7 @@ public class Main {
 //                    break;
             }
             
-
         InterfazGrafica.setVisible(true);
-        
-        //Threads Rubin
-//        for (int i = 0; i < InterfazGrafica.numEnsamJ; i++) {
-//            ensamblador = new EnsambladoresJ(InterfazGrafica.numEnsamJ);
-//            ensamblador.start();
-//        }
-//        
-//        for (int i = 1; i < 3; i++) {
-//            producBotonesJ = new ProductoresBotonesJ(i);
-//            producBotonesJ.start();
-//        }
-//        
-//        for (int i = 1; i < 4; i++) {
-//            producPantJ = new ProductoresPantallasJ(i);
-//            producPantJ.start();
-//        }
-//        
-//        for (int i = 1; i < 5; i++) {
-//            producCamsJ = new ProductoresCamarasJ(i);
-//            producCamsJ.start();
-//        }
-//        
-//        for (int i = 1; i < 4; i++) {
-//            producPins = new ProductoresPinesJ(i);
-//            producPins.start();
-//        }
-//        
-//        gerenteJ = new GerenteJ();
-//        jefeJ = new JefeJ();
-        
-//        for (int i = 1; i < numProductoresBotones; i++) {
-//            
-// 
-//            ThreadBotones = new ProductoresBotonesM(i,semBotones, almacenBotonesM);
-//            ThreadBotones.start();
-//
-//            
-//        }
-//        for (int i = 0; i < numProductoresPantallas; i++) {
-//            
-// 
-//            ThreadPantallas = new ProductoresPantallasM(i,semPantallas, almacenPantallasM);
-//            ThreadPantallas.start();
-//
-//            
-//        }
-//        
-//        for (int i = 0; i < numProductoresCamaras; i++) {
-//            
-// 
-//            ThreadCamaras = new ProductoresCamarasM(i,semCamaras, almacenCamarasM);
-//            ThreadCamaras.start();
-//
-//            
-//        }
-//        
-//        
-//        for (int i = 0; i < numProductoresPines; i++) {
-//            
-// 
-//            ThreadPines = new ProductoresPinesM(i,semPines, almacenPinesM);
-//            ThreadPines.start();
-//
-//            
-//        }
-
-    
-
     }
 
     
