@@ -45,7 +45,7 @@ public class JefeM extends Thread {
             
             Main.contadorMassimo--;
             
-            InterfazPlantas.TextJefePlanta5.setText(Integer.toString(Main.contadorMassimo));       
+            InterfazPlantas.countdownJOSE.setText(Integer.toString(Main.contadorMassimo));       
             
             
             Main.mutexContadorM.release();
