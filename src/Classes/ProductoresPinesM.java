@@ -4,6 +4,7 @@
  */
 package Classes;
 
+import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,9 +16,9 @@ import java.util.logging.Logger;
 public class ProductoresPinesM extends Thread {
     
 
-   
+    //public Semaphore mutexPinesM = new Semaphore(1);
     public Semaphore semMain;
-    public Semaphore mutex;
+    //public Semaphore mutex;
     public boolean stop;
     //public int maxPantallas;
     
@@ -25,8 +26,8 @@ public class ProductoresPinesM extends Thread {
  
     
     
-    public ProductoresPinesM (int threadNumber, Semaphore semMain, int maxPines){
-        this.semMain = semMain;
+    public ProductoresPinesM (int threadNumber, int maxPines){
+        //this.mutexPinesM = mutexPinesM;
         this.stop = true;
         this.threadNumber = threadNumber;
         
@@ -43,7 +44,7 @@ public class ProductoresPinesM extends Thread {
         try {
             
             
-            semMain.acquire();
+            Main.semPines.acquire();
             
 //            mutex.acquire();
 
@@ -51,7 +52,8 @@ public class ProductoresPinesM extends Thread {
             
             Main.almacenPinesM++;
             
-            System.out.println("Productor " + threadNumber + " produjo Pin " + Main.almacenPinesM +"\n");
+            InterfazPlantas.AlmacenPinesP2.setText(Integer.toString(Main.almacenPinesM));       
+            System.out.println("Productor Pin " + threadNumber + " produjo Pin " + Main.almacenPinesM +"\n");
             
             Main.mutexPines.release();
 

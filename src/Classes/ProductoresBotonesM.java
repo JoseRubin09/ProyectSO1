@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
+import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,9 +13,9 @@ import java.util.logging.Logger;
  */
 public class ProductoresBotonesM extends Thread{
     
-      
+    //public Semaphore mutexBotonesM = new Semaphore(1);  
     public Semaphore semMain;
-    public Semaphore mutex;
+    //public Semaphore mutex;
     public boolean stop;
     //public int maxPantallas;
     
@@ -22,8 +23,8 @@ public class ProductoresBotonesM extends Thread{
  
     
     
-    public ProductoresBotonesM (int threadNumber, Semaphore semMain, int maxPantallas){
-        this.semMain = semMain;
+    public ProductoresBotonesM (int threadNumber, int maxPantallas){
+        //this.mutexBotonesM = mutexBotonesM;
         this.stop = true;
         this.threadNumber = threadNumber;
         
@@ -40,12 +41,15 @@ public class ProductoresBotonesM extends Thread{
         try {
             
             
-            semMain.acquire();
+            Main.semBotones.acquire();
             
 //            mutex.acquire();
+            
             Main.mutexBotones.acquire();
             
             Main.almacenBotonesM++;
+            
+            InterfazPlantas.AlmacenBotonesP2.setText(Integer.toString(Main.almacenBotonesM));       
             System.out.println("Productor Boton " + threadNumber + " produjo Boton " + Main.almacenBotonesM+"\n");
             
             Main.mutexBotones.release();
@@ -53,7 +57,7 @@ public class ProductoresBotonesM extends Thread{
     
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(ProductoresPantallasM.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProductoresBotonesM.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
     }
