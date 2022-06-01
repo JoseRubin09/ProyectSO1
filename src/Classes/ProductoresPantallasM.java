@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
+
+import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,8 +16,8 @@ public class ProductoresPantallasM extends Thread{
     
 
    
-    public Semaphore semMain;
-    public Semaphore mutex;
+    //public Semaphore mutexpantallas = new Semaphore(1);    
+    //public Semaphore mutex;
     public boolean stop;
     //public int maxPantallas;
     
@@ -23,11 +25,15 @@ public class ProductoresPantallasM extends Thread{
  
     
     
-    public ProductoresPantallasM (int threadNumber, Semaphore semMain, int maxPantallas){
-        this.semMain = semMain;
+    public ProductoresPantallasM (int threadNumber, int maxPantallas){
+        //this.mutexpantallas = mutexpantallas;
         this.stop = true;
         this.threadNumber = threadNumber;
         
+    }
+
+    ProductoresPantallasM(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -41,13 +47,16 @@ public class ProductoresPantallasM extends Thread{
         try {
             
             
-            semMain.acquire();
+            Main.semPantallas.acquire();
             
 //            mutex.acquire();
 
             Main.mutexPantallas.acquire();
             
             Main.almacenPantallasM++;
+            
+            InterfazPlantas.AlmacenPantallasP2.setText(Integer.toString(Main.almacenPantallasM));
+            
             
             System.out.println("Productor " + threadNumber + " produjo pantalla " + Main.almacenPantallasM +"\n");
             

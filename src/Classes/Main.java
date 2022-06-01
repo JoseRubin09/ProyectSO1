@@ -1,4 +1,5 @@
 package Classes;
+import Interfaces.InterfazPlantas;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
@@ -35,28 +36,52 @@ public class Main {
     public static ProductoresPantallasM ThreadPantallas;
     public static Semaphore mutexPantallas = new Semaphore(1);
     public static volatile int almacenPantallasM =0;
-    public static int numProductoresPantallas=5;
+    public static int numProductoresPantallas=2;
     
-    //Productor Botones
-    public static Semaphore semBotones = new Semaphore(45);
+    //Productor Botones yaaa
+    public static Semaphore semBotones = new Semaphore(8);
     public static ProductoresBotonesM ThreadBotones;
     public static Semaphore mutexBotones = new Semaphore(1);
     public static volatile int almacenBotonesM = 0;
-    public static int numProductoresBotones=5;
+    public static int numProductoresBotones=2;
     
-    //Productor Camaras
-    public static Semaphore semCamaras = new Semaphore(20);
+    //Productor Camaras yaaaaa
+    public static Semaphore semCamaras = new Semaphore(8);
     public static ProductoresCamarasM ThreadCamaras;
     public static Semaphore mutexCamaras = new Semaphore(1);
     public static volatile int almacenCamarasM = 0;
-    public static int numProductoresCamaras=5;
+    public static int numProductoresCamaras=2;
     
     //Productor Pin
-    public static Semaphore semPines = new Semaphore(15);
+    public static Semaphore semPines = new Semaphore(6);
     public static ProductoresPinesM ThreadPines;
     public static Semaphore mutexPines = new Semaphore(1);
     public static volatile int almacenPinesM = 0;
-    public static int numProductoresPines=5;
+    public static int numProductoresPines=2;
+    
+    //Ensambladores Massimo
+    public static Semaphore semEnsamblador = new Semaphore(4);
+    public static EnsambladoresM ThreadEnsamblador;
+    
+    public static volatile int almacenTelefonosM = 0;
+    public static int numEnsambladoresM=2;
+    //aaaaaaaa
+    public static Semaphore mutexEnsambladorM = new Semaphore(1);
+    
+    //JEFE MASSIMO
+    //public static Semaphore semJefe = new Semaphore(1);
+    public static JefeM ThreadJefeM;
+    public static volatile int contadorMassimo = 30;
+    public static int numJefeM=1;
+    public static Semaphore mutexContadorM = new Semaphore(1);
+    public static String stadoJefeM="";
+    
+    //GERENTE MASSIMO
+    public static GerenteM ThreadGerenteM;
+    public static int numGerenteM=1;
+    public static int descuentoJefeM=0;
+    public static String stadoGerenteM="";
+    
     
     //Rubin Variables
     public static Semaphore semCamarasJ = new Semaphore(20);
