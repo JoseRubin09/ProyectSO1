@@ -70,7 +70,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
     public int numProducCamJ = producNumCamsJ;
     public int numProducPinesJ = producNumPinesJ;
     public int countdown;
-    public int numProducBotJ;
     public int t = 0;
     public InterfazPlantas() {
         initComponents();
@@ -939,10 +938,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         
         gerenteJ = new GerenteJ();
         jefeJ = new JefeJ();
-    }//GEN-LAST:event_startActionPerformed
         
-        
-            
         for (int i = 0; i < numProductoresBotones; i++) {
             
  
@@ -1009,10 +1005,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
             
         }
-  
         
- 
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_startActionPerformed
+                                          
 
     private void TiempoDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiempoDiasActionPerformed
         // TODO add your handling code here:
