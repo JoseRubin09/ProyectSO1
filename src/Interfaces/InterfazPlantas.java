@@ -5,6 +5,29 @@
  */
 package Interfaces;
 
+<<<<<<< HEAD
+=======
+import Classes.EnsambladoresJ;
+import Classes.GerenteJ;
+import Classes.JefeJ;
+import static Classes.Main.InterfazGrafica;
+import static Classes.Main.ensamblador;
+import static Classes.Main.gerenteJ;
+import static Classes.Main.jefeJ;
+import static Classes.Main.producBotonesJ;
+import static Classes.Main.producCamsJ;
+import static Classes.Main.producNumBotonesJ;
+import static Classes.Main.producNumCamsJ;
+import static Classes.Main.producNumPantJ;
+import static Classes.Main.producNumPinesJ;
+import static Classes.Main.producPantJ;
+import static Classes.Main.producPins;
+import Classes.ProductoresBotonesJ;
+import Classes.ProductoresCamarasJ;
+import Classes.ProductoresPantallasJ;
+import Classes.ProductoresPinesJ;
+import com.sun.tools.javac.Main;
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
 import Classes.EnsambladoresM;
 import Classes.GerenteM;
 import Classes.JefeM;
@@ -30,6 +53,7 @@ import Classes.ProductoresBotonesM;
 import Classes.ProductoresCamarasM;
 import Classes.ProductoresPantallasM;
 import Classes.ProductoresPinesM;
+<<<<<<< HEAD
 import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
 import Classes.JefeJ;
@@ -50,6 +74,8 @@ import Classes.ProductoresCamarasJ;
 import Classes.ProductoresPantallasJ;
 import Classes.ProductoresPinesJ;
 import com.sun.tools.javac.Main;
+=======
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,14 +90,21 @@ public class InterfazPlantas extends javax.swing.JFrame {
     /**
      * Creates new form InterfazPlantas
      */
+<<<<<<< HEAD
     public int numProducBotJ;
     public int t = 0;
+=======
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
     public int numEnsamJ;
     public int numProducBotJ = producNumBotonesJ;
     public int numProducPantJ = producNumPantJ;
     public int numProducCamJ = producNumCamsJ;
     public int numProducPinesJ = producNumPinesJ;
     public int countdown;
+<<<<<<< HEAD
+=======
+    public int t = 0;
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
     public InterfazPlantas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -728,9 +761,12 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosEnsam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam1ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         if(numProducBotJ > 1){
             numProducBotJ--;
             Ensambladores1.setText(Integer.toString(numProducBotJ));
+=======
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
         // Botones Menos
         if(numEnsamJ >= 1){
             numEnsamJ--;
@@ -915,8 +951,35 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
-            
-            for (int i = 0; i < numProductoresBotones; i++) {
+        for (int i = 0; i < numEnsamJ; i++) {
+            ensamblador = new EnsambladoresJ(numEnsamJ);
+            ensamblador.start();
+        }
+        
+        for (int i = 0; i < numProducBotJ; i++) {
+            producBotonesJ = new ProductoresBotonesJ(i);
+            producBotonesJ.start();
+        }
+        
+        for (int i = 0; i < numProducPantJ; i++) {
+            producPantJ = new ProductoresPantallasJ(i);
+            producPantJ.start();
+        }
+        
+        for (int i = 0; i < numProducCamJ; i++) {
+            producCamsJ = new ProductoresCamarasJ(i);
+            producCamsJ.start();
+        }
+        
+        for (int i = 0; i < numProducPinesJ; i++) {
+            producPins = new ProductoresPinesJ(i);
+            producPins.start();
+        }
+        
+        gerenteJ = new GerenteJ();
+        jefeJ = new JefeJ();
+        
+        for (int i = 0; i < numProductoresBotones; i++) {
             
  
             ThreadBotones = new ProductoresBotonesM(i, almacenBotonesM);
@@ -982,38 +1045,22 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
             
         }
-  
         
+<<<<<<< HEAD
  
     }//GEN-LAST:event_jButton2ActionPerformed
         for (int i = 0; i < numEnsamJ; i++) {
             ensamblador = new EnsambladoresJ(numEnsamJ);
             ensamblador.start();
         }
+=======
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
         
-        for (int i = 0; i < numProducBotJ; i++) {
-            producBotonesJ = new ProductoresBotonesJ(i);
-            producBotonesJ.start();
-        }
-        
-        for (int i = 0; i < numProducPantJ; i++) {
-            producPantJ = new ProductoresPantallasJ(i);
-            producPantJ.start();
-        }
-        
-        for (int i = 0; i < numProducCamJ; i++) {
-            producCamsJ = new ProductoresCamarasJ(i);
-            producCamsJ.start();
-        }
-        
-        for (int i = 0; i < numProducPinesJ; i++) {
-            producPins = new ProductoresPinesJ(i);
-            producPins.start();
-        }
-        
-        gerenteJ = new GerenteJ();
-        jefeJ = new JefeJ();
     }//GEN-LAST:event_startActionPerformed
+<<<<<<< HEAD
+=======
+                                          
+>>>>>>> ae506b2145e90ea156f81ef8eaeb6c44a3c4312e
 
     private void TiempoDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiempoDiasActionPerformed
         // TODO add your handling code here:
@@ -1031,6 +1078,33 @@ public class InterfazPlantas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextJefePlanta5ActionPerformed
 
+    private void BotonSumBotones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones1ActionPerformed
+        // TODO add your handling code here:
+        numProducBotJ++;
+        ProductoresB1.setText(Integer.toString(numProducBotJ));
+    }//GEN-LAST:event_BotonSumBotones1ActionPerformed
+
+    private void BotonSumPant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPant1ActionPerformed
+        // TODO add your handling code here:
+        numProducPantJ++;
+        ProductoresPant1.setText(Integer.toString(numProducPantJ));
+    }//GEN-LAST:event_BotonSumPant1ActionPerformed
+
+    private void BotonSumCams1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumCams1ActionPerformed
+        // TODO add your handling code here:
+        numProducCamJ++;
+        ProductoresCams1.setText(Integer.toString(numProducCamJ));
+    }//GEN-LAST:event_BotonSumCams1ActionPerformed
+
+    private void ProductoresPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPines1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductoresPines1ActionPerformed
+
+    private void BotonSumPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPines1ActionPerformed
+        // TODO add your handling code here:
+        numProducPinesJ++;
+        ProductoresPines1.setText(Integer.toString(numProducPinesJ));
+    }//GEN-LAST:event_BotonSumPines1ActionPerformed
     private void AlmacenBotonesP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenBotonesP1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AlmacenBotonesP1ActionPerformed
@@ -1082,33 +1156,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private void TextJefePlanta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextJefePlanta3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextJefePlanta3ActionPerformed
-    private void BotonSumBotones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones1ActionPerformed
-        // TODO add your handling code here:
-        numProducBotJ++;
-        ProductoresB1.setText(Integer.toString(numProducBotJ));
-    }//GEN-LAST:event_BotonSumBotones1ActionPerformed
-
-    private void BotonSumPant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPant1ActionPerformed
-        // TODO add your handling code here:
-        numProducPantJ++;
-        ProductoresPant1.setText(Integer.toString(numProducPantJ));
-    }//GEN-LAST:event_BotonSumPant1ActionPerformed
-
-    private void BotonSumCams1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumCams1ActionPerformed
-        // TODO add your handling code here:
-        numProducCamJ++;
-        ProductoresCams1.setText(Integer.toString(numProducCamJ));
-    }//GEN-LAST:event_BotonSumCams1ActionPerformed
-
-    private void ProductoresPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPines1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductoresPines1ActionPerformed
-
-    private void BotonSumPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPines1ActionPerformed
-        // TODO add your handling code here:
-        numProducPinesJ++;
-        ProductoresPines1.setText(Integer.toString(numProducPinesJ));
-    }//GEN-LAST:event_BotonSumPines1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1146,14 +1193,14 @@ public class InterfazPlantas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTextField AlmacenBotonesP2;
-    public static javax.swing.JTextField AlmacenCamsP2;
-    public static javax.swing.JTextField AlmacenPantallasP2;
-    public static javax.swing.JTextField AlmacenPinesP2;
     public static javax.swing.JTextField AlmacenBotonesP1;
     public static javax.swing.JTextField AlmacenCamsP1;
     public static javax.swing.JTextField AlmacenPantallasP1;
     public static javax.swing.JTextField AlmacenPinesP1;
+    public static javax.swing.JTextField AlmacenBotonesP2;
+    public static javax.swing.JTextField AlmacenCamsP2;
+    public static javax.swing.JTextField AlmacenPantallasP2;
+    public static javax.swing.JTextField AlmacenPinesP2;
     private javax.swing.JButton BotonMenosBotones1;
     private javax.swing.JButton BotonMenosBotones2;
     private javax.swing.JButton BotonMenosCams1;
@@ -1188,16 +1235,16 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private javax.swing.JTextField ProductoresPant2;
     private javax.swing.JTextField ProductoresPines1;
     private javax.swing.JTextField ProductoresPines2;
+    public static javax.swing.JTextField TelefonosPlanta1;
+    public static javax.swing.JTextField TextGerentePlanta1;
+    public static javax.swing.JTextField TextJefePlanta6;
+    public static javax.swing.JTextField UltimoLote1;
     public static javax.swing.JTextField TelefonosPlanta2;
     public static javax.swing.JTextField TextGerentePlanta3;
     public static javax.swing.JTextField TextJefePlanta3;
     public static javax.swing.JTextField TextJefePlanta5;
-    public static javax.swing.JTextField UltimoLote2;
-    public static javax.swing.JTextField TelefonosPlanta1;
-    public static javax.swing.JTextField TextGerentePlanta1;
-    public static javax.swing.JTextField TextJefePlanta6;
     private javax.swing.JTextField TiempoDias;
-    public static javax.swing.JTextField UltimoLote1;
+    public static javax.swing.JTextField UltimoLote2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
