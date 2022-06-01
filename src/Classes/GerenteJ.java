@@ -13,11 +13,9 @@ import java.util.concurrent.Semaphore;
  */
 public class GerenteJ extends Thread{
     
-    public Semaphore semMain;
-    public Semaphore mutex;
+    public Semaphore mutex = new Semaphore(1);
     public boolean stop;
-    public GerenteJ (Semaphore semMain){
-        this.semMain = semMain;
+    public GerenteJ (){
         this.stop = true;
         
     }

@@ -30,6 +30,26 @@ import Classes.ProductoresBotonesM;
 import Classes.ProductoresCamarasM;
 import Classes.ProductoresPantallasM;
 import Classes.ProductoresPinesM;
+import Classes.EnsambladoresJ;
+import Classes.GerenteJ;
+import Classes.JefeJ;
+import static Classes.Main.InterfazGrafica;
+import static Classes.Main.ensamblador;
+import static Classes.Main.gerenteJ;
+import static Classes.Main.jefeJ;
+import static Classes.Main.producBotonesJ;
+import static Classes.Main.producCamsJ;
+import static Classes.Main.producNumBotonesJ;
+import static Classes.Main.producNumCamsJ;
+import static Classes.Main.producNumPantJ;
+import static Classes.Main.producNumPinesJ;
+import static Classes.Main.producPantJ;
+import static Classes.Main.producPins;
+import Classes.ProductoresBotonesJ;
+import Classes.ProductoresCamarasJ;
+import Classes.ProductoresPantallasJ;
+import Classes.ProductoresPinesJ;
+import com.sun.tools.javac.Main;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,11 +66,28 @@ public class InterfazPlantas extends javax.swing.JFrame {
      */
     public int numProducBotJ;
     public int t = 0;
+    public int numEnsamJ;
+    public int numProducBotJ = producNumBotonesJ;
+    public int numProducPantJ = producNumPantJ;
+    public int numProducCamJ = producNumCamsJ;
+    public int numProducPinesJ = producNumPinesJ;
+    public int countdown;
     public InterfazPlantas() {
         initComponents();
         this.setLocationRelativeTo(null);
         Ensambladores1.setEditable(false);
-        this.numProducBotJ = 0;
+        ProductoresB1.setEditable(false);
+        ProductoresPant1.setEditable(false);
+        ProductoresCams1.setEditable(false);
+        ProductoresPines1.setEditable(false);
+        AlmacenBotonesP1.setEditable(false);
+        this.numProducBotJ = 1;
+        this.numEnsamJ = 1;
+        this.numProducPantJ = 1;
+        this.numProducCamJ = 1;
+        this.numProducPinesJ = 1;
+        this.countdown = 30;
+        
     }
 
     /**
@@ -75,13 +112,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         TextJefePlanta5 = new javax.swing.JTextField();
-        TextGerentePlanta4 = new javax.swing.JTextField();
+        TextGerentePlanta1 = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         TextJefePlanta6 = new javax.swing.JTextField();
         TiempoDias = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        start = new javax.swing.JButton();
         jLabel56 = new javax.swing.JLabel();
         UltimoLote1 = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
@@ -205,13 +242,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
         });
         jPanel2.add(TextJefePlanta5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 570, 30, 40));
 
-        TextGerentePlanta4.setText("Durmiendo....");
-        TextGerentePlanta4.addActionListener(new java.awt.event.ActionListener() {
+        TextGerentePlanta1.setText("Durmiendo....");
+        TextGerentePlanta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextGerentePlanta4ActionPerformed(evt);
+                TextGerentePlanta1ActionPerformed(evt);
             }
         });
-        jPanel2.add(TextGerentePlanta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 620, 250, 30));
+        jPanel2.add(TextGerentePlanta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 620, 250, 30));
 
         jLabel51.setText("Gerente Planta 1");
         jPanel2.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 600, -1, -1));
@@ -239,13 +276,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel53.setText("Tiempo de los Dias");
         jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 160, -1));
 
-        jButton2.setText("Start");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        start.setText("Start");
+        start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                startActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 650, 180, 110));
+        jPanel2.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 650, 180, 110));
 
         jLabel56.setText("Telefonos Vendidos Ultimo Lote");
         jPanel2.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, -1, -1));
@@ -511,12 +548,27 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, -1));
 
         BotonSumBotones1.setText("+");
+        BotonSumBotones1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSumBotones1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(BotonSumBotones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 60, 50));
 
         BotonSumCams1.setText("+");
+        BotonSumCams1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSumCams1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(BotonSumCams1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 60, 50));
 
         BotonSumPant1.setText("+");
+        BotonSumPant1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSumPant1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(BotonSumPant1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 60, 50));
 
         BotonMenosBotones1.setText("-");
@@ -567,9 +619,19 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
 
         ProductoresPines1.setText("1");
+        ProductoresPines1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductoresPines1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(ProductoresPines1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 250, 30));
 
         BotonSumPines1.setText("+");
+        BotonSumPines1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSumPines1ActionPerformed(evt);
+            }
+        });
         jPanel4.add(BotonSumPines1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 60, 50));
 
         jLabel15.setText("Productores de Pines de Carga");
@@ -666,18 +728,22 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosEnsam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam1ActionPerformed
         // TODO add your handling code here:
-        
         if(numProducBotJ > 1){
             numProducBotJ--;
             Ensambladores1.setText(Integer.toString(numProducBotJ));
+        // Botones Menos
+        if(numEnsamJ >= 1){
+            numEnsamJ--;
+            Ensambladores1.setText(Integer.toString(numEnsamJ));
+        } else{
+            TextGerentePlanta1.setText("Despedido bro fuera de aqui");
         }
     }//GEN-LAST:event_BotonMenosEnsam1ActionPerformed
 
     private void BotonSumEnsam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumEnsam1ActionPerformed
         // TODO add your handling code here:
-        numProducBotJ++;
-        Ensambladores1.setText(Integer.toString(numProducBotJ));
-        
+        numEnsamJ++;
+        Ensambladores1.setText(Integer.toString(numEnsamJ));
     }//GEN-LAST:event_BotonSumEnsam1ActionPerformed
 
     private void Ensambladores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ensambladores1ActionPerformed
@@ -694,6 +760,14 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPines1ActionPerformed
         // TODO add your handling code here:
+        if(numProducPinesJ > 1){
+            numProducPinesJ--;
+            ProductoresPines1.setText(Integer.toString(numProducPinesJ));
+        }
+        
+        else{
+            TextGerentePlanta1.setText("Despedido bro fuera de aqui wtf");
+        }
     }//GEN-LAST:event_BotonMenosPines1ActionPerformed
 
     private void ProductoresB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresB1ActionPerformed
@@ -703,14 +777,38 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosCams1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosCams1ActionPerformed
         // TODO add your handling code here:
+        if(numProducCamJ > 1){
+            numProducCamJ--;
+            ProductoresCams1.setText(Integer.toString(numProducCamJ));
+        }
+        
+        else{
+            TextGerentePlanta1.setText("Despedido bro fuera de aqui wtf");
+        }
     }//GEN-LAST:event_BotonMenosCams1ActionPerformed
 
     private void BotonMenosPant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPant1ActionPerformed
         // TODO add your handling code here:
+        if(numProducPantJ > 1){
+            numProducPantJ--;
+            ProductoresPant1.setText(Integer.toString(numProducPantJ));
+            }
+            else{
+            TextGerentePlanta1.setText("Despedido bro fuera de aqui wtf");
+            } 
+        
     }//GEN-LAST:event_BotonMenosPant1ActionPerformed
 
     private void BotonMenosBotones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosBotones1ActionPerformed
         // TODO add your handling code here:
+        if(numProducBotJ > 1){
+            numProducBotJ--;
+            ProductoresB1.setText(Integer.toString(numProducPantJ));
+        }
+        
+        else{
+            TextGerentePlanta1.setText("Despedido bro fuera de aqui wtf");
+        }
     }//GEN-LAST:event_BotonMenosBotones1ActionPerformed
 
     private void BotonMenosEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam2ActionPerformed
@@ -815,10 +913,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UltimoLote1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
-        
-        
             
             for (int i = 0; i < numProductoresBotones; i++) {
             
@@ -890,6 +986,34 @@ public class InterfazPlantas extends javax.swing.JFrame {
         
  
     }//GEN-LAST:event_jButton2ActionPerformed
+        for (int i = 0; i < numEnsamJ; i++) {
+            ensamblador = new EnsambladoresJ(numEnsamJ);
+            ensamblador.start();
+        }
+        
+        for (int i = 0; i < numProducBotJ; i++) {
+            producBotonesJ = new ProductoresBotonesJ(i);
+            producBotonesJ.start();
+        }
+        
+        for (int i = 0; i < numProducPantJ; i++) {
+            producPantJ = new ProductoresPantallasJ(i);
+            producPantJ.start();
+        }
+        
+        for (int i = 0; i < numProducCamJ; i++) {
+            producCamsJ = new ProductoresCamarasJ(i);
+            producCamsJ.start();
+        }
+        
+        for (int i = 0; i < numProducPinesJ; i++) {
+            producPins = new ProductoresPinesJ(i);
+            producPins.start();
+        }
+        
+        gerenteJ = new GerenteJ();
+        jefeJ = new JefeJ();
+    }//GEN-LAST:event_startActionPerformed
 
     private void TiempoDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TiempoDiasActionPerformed
         // TODO add your handling code here:
@@ -899,9 +1023,9 @@ public class InterfazPlantas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextJefePlanta6ActionPerformed
 
-    private void TextGerentePlanta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextGerentePlanta4ActionPerformed
+    private void TextGerentePlanta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextGerentePlanta1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextGerentePlanta4ActionPerformed
+    }//GEN-LAST:event_TextGerentePlanta1ActionPerformed
 
     private void TextJefePlanta5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextJefePlanta5ActionPerformed
         // TODO add your handling code here:
@@ -958,6 +1082,33 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private void TextJefePlanta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextJefePlanta3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextJefePlanta3ActionPerformed
+    private void BotonSumBotones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones1ActionPerformed
+        // TODO add your handling code here:
+        numProducBotJ++;
+        ProductoresB1.setText(Integer.toString(numProducBotJ));
+    }//GEN-LAST:event_BotonSumBotones1ActionPerformed
+
+    private void BotonSumPant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPant1ActionPerformed
+        // TODO add your handling code here:
+        numProducPantJ++;
+        ProductoresPant1.setText(Integer.toString(numProducPantJ));
+    }//GEN-LAST:event_BotonSumPant1ActionPerformed
+
+    private void BotonSumCams1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumCams1ActionPerformed
+        // TODO add your handling code here:
+        numProducCamJ++;
+        ProductoresCams1.setText(Integer.toString(numProducCamJ));
+    }//GEN-LAST:event_BotonSumCams1ActionPerformed
+
+    private void ProductoresPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPines1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductoresPines1ActionPerformed
+
+    private void BotonSumPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPines1ActionPerformed
+        // TODO add your handling code here:
+        numProducPinesJ++;
+        ProductoresPines1.setText(Integer.toString(numProducPinesJ));
+    }//GEN-LAST:event_BotonSumPines1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -995,14 +1146,14 @@ public class InterfazPlantas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AlmacenBotonesP1;
     public static javax.swing.JTextField AlmacenBotonesP2;
-    private javax.swing.JTextField AlmacenCamsP1;
     public static javax.swing.JTextField AlmacenCamsP2;
-    public static javax.swing.JTextField AlmacenPantallasP1;
     public static javax.swing.JTextField AlmacenPantallasP2;
-    private javax.swing.JTextField AlmacenPinesP1;
     public static javax.swing.JTextField AlmacenPinesP2;
+    public static javax.swing.JTextField AlmacenBotonesP1;
+    public static javax.swing.JTextField AlmacenCamsP1;
+    public static javax.swing.JTextField AlmacenPantallasP1;
+    public static javax.swing.JTextField AlmacenPinesP1;
     private javax.swing.JButton BotonMenosBotones1;
     private javax.swing.JButton BotonMenosBotones2;
     private javax.swing.JButton BotonMenosCams1;
@@ -1037,18 +1188,17 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private javax.swing.JTextField ProductoresPant2;
     private javax.swing.JTextField ProductoresPines1;
     private javax.swing.JTextField ProductoresPines2;
-    private javax.swing.JTextField TelefonosPlanta1;
     public static javax.swing.JTextField TelefonosPlanta2;
     public static javax.swing.JTextField TextGerentePlanta3;
-    private javax.swing.JTextField TextGerentePlanta4;
     public static javax.swing.JTextField TextJefePlanta3;
     public static javax.swing.JTextField TextJefePlanta5;
-    private javax.swing.JTextField TextJefePlanta6;
-    private javax.swing.JTextField TiempoDias;
-    private javax.swing.JTextField UltimoLote1;
     public static javax.swing.JTextField UltimoLote2;
+    public static javax.swing.JTextField TelefonosPlanta1;
+    public static javax.swing.JTextField TextGerentePlanta1;
+    public static javax.swing.JTextField TextJefePlanta6;
+    private javax.swing.JTextField TiempoDias;
+    public static javax.swing.JTextField UltimoLote1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1091,5 +1241,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField9;
+    public static javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 }
