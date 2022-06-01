@@ -1,9 +1,11 @@
 package Classes;
+import Interfaces.InterfazPlantas;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Interfaces.InterfazPlantas;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,35 +27,64 @@ public class Main {
     public static volatile int countdownPlantaM=30;
     
     
+    public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
+    
+    
+    
+    
    //Variables Rubin
 
-    //Productor Pantalla
-    public static Semaphore semPantallas = new Semaphore(40);
+    //Productor Pantalla yaaaa
+    public static Semaphore semPantallas = new Semaphore(10);
     public static ProductoresPantallasM ThreadPantallas;
     public static Semaphore mutexPantallas = new Semaphore(1);
     public static volatile int almacenPantallasM =0;
-    public static int numProductoresPantallas=5;
+    public static int numProductoresPantallas=2;
     
-    //Productor Botones
-    public static Semaphore semBotones = new Semaphore(45);
+    //Productor Botones yaaa
+    public static Semaphore semBotones = new Semaphore(8);
     public static ProductoresBotonesM ThreadBotones;
     public static Semaphore mutexBotones = new Semaphore(1);
     public static volatile int almacenBotonesM = 0;
-    public static int numProductoresBotones=5;
+    public static int numProductoresBotones=2;
     
-    //Productor Camaras
-    public static Semaphore semCamaras = new Semaphore(20);
+    //Productor Camaras yaaaaa
+    public static Semaphore semCamaras = new Semaphore(8);
     public static ProductoresCamarasM ThreadCamaras;
     public static Semaphore mutexCamaras = new Semaphore(1);
     public static volatile int almacenCamarasM = 0;
-    public static int numProductoresCamaras=5;
+    public static int numProductoresCamaras=2;
     
     //Productor Pin
-    public static Semaphore semPines = new Semaphore(15);
+    public static Semaphore semPines = new Semaphore(6);
     public static ProductoresPinesM ThreadPines;
     public static Semaphore mutexPines = new Semaphore(1);
     public static volatile int almacenPinesM = 0;
-    public static int numProductoresPines=5;
+    public static int numProductoresPines=2;
+    
+    //Ensambladores Massimo
+    public static Semaphore semEnsamblador = new Semaphore(4);
+    public static EnsambladoresM ThreadEnsamblador;
+    
+    public static volatile int almacenTelefonosM = 0;
+    public static int numEnsambladoresM=2;
+    //aaaaaaaa
+    public static Semaphore mutexEnsambladorM = new Semaphore(1);
+    
+    //JEFE MASSIMO
+    //public static Semaphore semJefe = new Semaphore(1);
+    public static JefeM ThreadJefeM;
+    public static volatile int contadorMassimo = 30;
+    public static int numJefeM=1;
+    public static Semaphore mutexContadorM = new Semaphore(1);
+    public static String stadoJefeM="";
+    
+    //GERENTE MASSIMO
+    public static GerenteM ThreadGerenteM;
+    public static int numGerenteM=1;
+    public static int descuentoJefeM=0;
+    public static String stadoGerenteM="";
+    
     
     //Rubin Variables
     public static Semaphore semBotonesJ = new Semaphore(45);
@@ -89,49 +120,23 @@ public class Main {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ, mutexBotons);
-        producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ, mutexPants);
-        producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ, mutexCams);
-        producBotonesJ.start();
-        producCamsJ.start();
-        producPantJ.start();
-        
-        for (int i = 0; i < numProductoresBotones; i++) {
-            
- 
-            ThreadBotones = new ProductoresBotonesM(i,semBotones, almacenBotonesM);
-            ThreadBotones.start();
+        //producBotonesJ = new ProductoresBotonesJ(semBotonesJ, maxBotonesJ, mutexBotons);
+        //producPantJ = new ProductoresPantallasJ(semPantJ, maxPantJ, mutexPants);
+        //producCamsJ = new ProductoresCamarasJ(semCamarasJ, maxCamsJ, mutexCams);
+        //producBotonesJ.start();
+        //producCamsJ.start();
+        //producPantJ.start();
 
-            
-        }
         
-        for (int i = 0; i < numProductoresPantallas; i++) {
-            
+        InterfazGrafica.setVisible(true);
+        
+        //InterfazPlantas.AlmacenPantallasP2.setText(Integer.toString(Main.almacenPantallasM));
+        //InterfazPlantas.AlmacenCamsP2.setText(Integer.toString(Main.almacenCamarasM));
+        //InterfazPlantas.AlmacenBotonesP2.setText(Integer.toString(Main.almacenBotonesM));
+        //InterfazPlantas.AlmacenPinesP2.setText(Integer.toString(Main.almacenPinesM));
+        //InterfazPlantas.TelefonosPlanta2.setText(Integer.toString(Main.almacenTelefonosM));
+        
  
-            ThreadPantallas = new ProductoresPantallasM(i,semPantallas, almacenPantallasM);
-            ThreadPantallas.start();
-
-            
-        }
-        
-        for (int i = 0; i < numProductoresCamaras; i++) {
-            
- 
-            ThreadCamaras = new ProductoresCamarasM(i,semCamaras, almacenCamarasM);
-            ThreadCamaras.start();
-
-            
-        }
-        
-        
-        for (int i = 0; i < numProductoresPines; i++) {
-            
- 
-            ThreadPines = new ProductoresPinesM(i,semPines, almacenPinesM);
-            ThreadPines.start();
-
-            
-        }
     
     
 
