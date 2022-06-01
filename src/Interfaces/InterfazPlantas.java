@@ -14,6 +14,10 @@ import static Classes.Main.gerenteJ;
 import static Classes.Main.jefeJ;
 import static Classes.Main.producBotonesJ;
 import static Classes.Main.producCamsJ;
+import static Classes.Main.producNumBotonesJ;
+import static Classes.Main.producNumCamsJ;
+import static Classes.Main.producNumPantJ;
+import static Classes.Main.producNumPinesJ;
 import static Classes.Main.producPantJ;
 import static Classes.Main.producPins;
 import Classes.ProductoresBotonesJ;
@@ -35,10 +39,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
      * Creates new form InterfazPlantas
      */
     public int numEnsamJ;
-    public int numProducBotJ;
-    public int numProducPantJ;
-    public int numProducCamJ;
-    public int numProducPinesJ;
+    public int numProducBotJ = producNumBotonesJ;
+    public int numProducPantJ = producNumPantJ;
+    public int numProducCamJ = producNumCamsJ;
+    public int numProducPinesJ = producNumPinesJ;
     public int countdown;
     public InterfazPlantas() {
         initComponents();

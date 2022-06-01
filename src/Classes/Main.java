@@ -28,7 +28,7 @@ public class Main {
      */
     public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
     public static int tiempoDia;
-    public static int despachoDias;
+    public static int countdown;
     
     //Productor Pantalla
     public static Semaphore semPantallas = new Semaphore(40);
@@ -72,13 +72,23 @@ public class Main {
     public static volatile int maxCamsJ = 0;
     public static volatile int maxPantJ = 0;
     public static volatile int numPines = 0;
+    
+    //Rubin Numero de productores
+    public static volatile int producNumBotonesJ;
+    public static volatile int producNumCamsJ;
+    public static volatile int producNumPantJ;
+    public static volatile int producNumPinesJ;
+
+    //Massimo Numero de productores
+    public static volatile int producNumBotonesM;
+    public static volatile int producNumCamsM;
+    public static volatile int producNumPantM;
+    
     public static volatile int numTelef = 0;
     public static volatile int almcenMaxBotonesJ;
     public static volatile int almcenMaxPantJ;
     public static volatile int almcenMaxCamsJ;
 
-    public static volatile int countdown=30;
-    
     public static JefeJ jefeJ;
     public static GerenteJ gerenteJ;
     public static EnsambladoresJ ensamblador;
@@ -102,35 +112,44 @@ public class Main {
         for (String key : map.keySet())
             switch(key){
                 case "tiempoDia": 
-                    tiempoDia = (Integer)map.get(key);
+                    tiempoDia = Integer.valueOf((String)map.get(key));
                     break;
-                case "despachoDias":
-                    despachoDias = (Integer)map.get(key);
+                case "countdown":
+                    countdown = Integer.valueOf((String)map.get(key));
                     break;
                 case "almacenBotonesPlanta1":
-                    almcenMaxBotonesJ = (Integer)map.get(key);
+                    almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));
+                    break;
+                case "producBotonesPlanta1":
+                    almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));
                     break;
                 case "almacenPantsPlanta1":
-                    almcenMaxPantJ = (Integer)map.get(key);
+                    almcenMaxPantJ = Integer.valueOf((String)map.get(key));
+                    break;
+                case "producPantsPlanta1":
+                    almcenMaxPantJ = Integer.valueOf((String)map.get(key));
                     break;
                 case "almacenCamsPlanta1":
-                    almcenMaxCamsJ = (Integer)map.get(key);
+                    almcenMaxCamsJ = Integer.valueOf((String)map.get(key));
                     break;
-                case "ensambladoresPlanta1":
-                    despachoDias = (Integer)map.get(key);
+                case "producCamsPlanta1":
+                    almcenMaxCamsJ = Integer.valueOf((String)map.get(key));
                     break;
-                case "almacenBotonesPlanta2":
-                    despachoDias = (Integer)map.get(key);
-                    break;
-                case "almacenPantsPlanta2":
-                    despachoDias = (Integer)map.get(key);
-                    break;
-                case "almacenCamsPlanta2":
-                    despachoDias = (Integer)map.get(key);
-                    break;
-                case "ensambladoresPlanta2":
-                    despachoDias = (Integer)map.get(key);
-                    break;
+//                case "ensambladoresPlanta1":
+//                    ensambladores = Integer.valueOf((String)map.get(key));
+//                    break;
+//                case "almacenBotonesPlanta2":
+//                    almacenCamarasM = Integer.valueOf((String)map.get(key));
+//                    break;
+//                case "almacenPantsPlanta2":
+//                    despachoDias = Integer.valueOf((String)map.get(key));
+//                    break;
+//                case "almacenCamsPlanta2":
+//                    almacenCamarasM = Integer.valueOf((String)map.get(key));
+//                    break;
+//                case "ensambladoresPlanta2":
+//                    despachoDias = Integer.valueOf((String)map.get(key));
+//                    break;
             }
             
 
