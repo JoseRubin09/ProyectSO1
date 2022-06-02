@@ -219,8 +219,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
         stop = new javax.swing.JToggleButton();
         jLabel62 = new javax.swing.JLabel();
         countdownMASSIMO = new javax.swing.JTextField();
-        JefePerdido1 = new javax.swing.JTextField();
         JefePerdido2 = new javax.swing.JTextField();
+        JefePerdido1 = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
 
@@ -767,14 +767,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
         });
         jPanel2.add(countdownMASSIMO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 100, 30));
 
-        JefePerdido1.setText("1");
-        JefePerdido1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JefePerdido1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(JefePerdido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 70, 30));
-
         JefePerdido2.setText("1");
         JefePerdido2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -782,6 +774,14 @@ public class InterfazPlantas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(JefePerdido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 750, 70, 30));
+
+        JefePerdido1.setText("1");
+        JefePerdido1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JefePerdido1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JefePerdido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 70, 30));
 
         jLabel64.setText("Telefonos Vendidos Ultimo Lote");
         jPanel2.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, -1));
@@ -1083,6 +1083,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
         
+        tiempoDia =  Integer.parseInt(TiempoDias.getText()) ;
+        
         for (int i = 0; i < numEnsamJ; i++) {
             ensamblador = new EnsambladoresJ(numEnsamJ);
             ensamblador.start();
@@ -1269,7 +1271,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
     public static javax.swing.JTextField Ensambladores2;
     public static javax.swing.JTextField GananciasTotales1;
     public static javax.swing.JTextField GananciasTotales2;
-    private javax.swing.JTextField GastosSalario2;
+    public static javax.swing.JTextField GastosSalario2;
     public static javax.swing.JTextField GastosSalario5;
     public static javax.swing.JTextField JefePerdido1;
     public static javax.swing.JTextField JefePerdido2;

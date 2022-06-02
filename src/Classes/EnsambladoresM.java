@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
+import static Classes.Main.tiempoDia;
 import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -107,7 +108,7 @@ public class EnsambladoresM extends Thread{
                 
                 Main.mutexEnsambladorM.release();
 
-                Thread.sleep(2000);
+                Thread.sleep(tiempoDia*2000);
                 
                 
                 }else{
