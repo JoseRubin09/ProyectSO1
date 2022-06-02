@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
+import static Classes.Main.tiempoDia;
 import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -55,7 +56,7 @@ public class ProductoresBotonesM extends Thread{
             Main.mutexBotones.release();
 
     
-            Thread.sleep(1000);
+            Thread.sleep(tiempoDia*500);
         } catch (InterruptedException ex) {
             Logger.getLogger(ProductoresBotonesM.class.getName()).log(Level.SEVERE, null, ex);
         }
