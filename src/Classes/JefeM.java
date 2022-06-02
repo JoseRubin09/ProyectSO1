@@ -37,6 +37,8 @@ public class JefeM extends Thread {
             
             
             
+            if (Main.contadorMassimo > 0) {
+                
             
 //            mutex.acquire();
 
@@ -72,6 +74,11 @@ public class JefeM extends Thread {
                 
                 
                 
+            }
+            
+            }else{
+                
+                this.stopToggle();
             }
 
     

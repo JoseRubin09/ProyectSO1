@@ -87,6 +87,8 @@ public class Main {
     public static int numGerenteM=1;
     public static int descuentoJefeM=0;
     public static String stadoGerenteM="";
+    //INterfaz massimo
+    public static int numeroMaximoEmpleadosM=14;
     
     
     //Rubin Variables
