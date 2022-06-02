@@ -4,6 +4,7 @@
  */
 package Classes;
 
+import static Classes.Main.tiempoDia;
 import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -12,6 +13,7 @@ import java.util.logging.Logger;
  *
  * @author massimo
  */
+
 public class ProductoresPantallasM extends Thread{
     
 
@@ -63,7 +65,7 @@ public class ProductoresPantallasM extends Thread{
             Main.mutexPantallas.release();
 
     
-            Thread.sleep(1000);
+            Thread.sleep(tiempoDia*500);
         } catch (InterruptedException ex) {
             Logger.getLogger(ProductoresPantallasM.class.getName()).log(Level.SEVERE, null, ex);
         }

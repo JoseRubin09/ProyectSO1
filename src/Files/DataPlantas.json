@@ -1,12 +1,12 @@
 [{
     "tiempoDia": "1",
-    "countdown": "1",
+    "countdown": "30",
     "almacenBotonesPlanta1": "3",
     "almacenPantsPlanta1": "3",
     "almacenCamsPlanta1": "3",
     "ensambladoresPlanta1": "3",
-    "almacenBotonesPlanta2": "3",
-    "almacenPantsPlanta2": "3",
-    "almacenCamsPlanta2": "3",
-    "ensambladoresPlanta2": "3"
+    "almacenBotonesPlanta2": "0",
+    "almacenPantsPlanta2": "0",
+    "almacenCamsPlanta2": "0",
+    "ensambladoresPlanta2": "1"
 }]
