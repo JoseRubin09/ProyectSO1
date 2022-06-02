@@ -4,6 +4,7 @@
  */
 package Classes;
 
+import static Classes.Main.tiempoDia;
 import Interfaces.InterfazPlantas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,11 +73,12 @@ public class GerenteM extends Thread{
                         Main.descuentoJefeM = Main.descuentoJefeM+2;
                         
                         
-                        InterfazPlantas.UltimoLote2.setText(Integer.toString(Main.descuentoJefeM));
+                        InterfazPlantas.JefePerdido2.setText(Integer.toString(Main.descuentoJefeM));
+                        
                         
                     }
                     
-                    Thread.sleep(n);
+                    Thread.sleep(tiempoDia*n);
                 }
                 
                 
@@ -90,7 +92,7 @@ public class GerenteM extends Thread{
             
             Main.stadoGerenteM = "Casa";
             InterfazPlantas.TextGerentePlanta3.setText(Main.stadoGerenteM);
-            Thread.sleep(MinutosEnUnDia-PeriodoTrabajoM);
+            Thread.sleep(tiempoDia*(MinutosEnUnDia-PeriodoTrabajoM));
             
             
       
