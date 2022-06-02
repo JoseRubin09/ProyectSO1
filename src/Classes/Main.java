@@ -13,6 +13,7 @@ import static Interfaces.InterfazPlantas.ProductoresPant2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Stack;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -43,6 +44,8 @@ public class Main {
     public static Semaphore mutexPantallas = new Semaphore(1);
     public static volatile int almacenPantallasM =0;
     public static int numProductoresPantallas=1;
+    
+    
     
     //Productor Botones yaaa
     public static Semaphore semBotones = new Semaphore(45);
@@ -90,6 +93,15 @@ public class Main {
     //INterfaz massimo
     public static int numeroMaximoEmpleadosM=14;
     
+    //Pila productores massimo
+    public static Stack<ProductoresPantallasM> pilaProductoresPantallasM= new Stack<ProductoresPantallasM>();
+    public static Stack<ProductoresCamarasM> pilaProductoresCamarasM= new Stack<ProductoresCamarasM>();
+    public static Stack<ProductoresBotonesM> pilaProductoresBotonesM= new Stack<ProductoresBotonesM>();
+    public static Stack<ProductoresPinesM> pilaProductoresPinesM= new Stack<ProductoresPinesM>();
+    public static Stack<EnsambladoresM> pilaEnsambladoresM= new Stack<EnsambladoresM>();
+    
+    
+    
     
     //Rubin Variables
     public static Semaphore semCamarasJ = new Semaphore(20);
@@ -135,6 +147,11 @@ public class Main {
 
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        
+        
+        
+        
         JSONArray data = txtAction.readJson("/Users/massimo/SO/PROYECTO/ProyectSO1/src/Files/DataPlantas.json");
         Map<String, Object> map = (Map<String, Object>) data.get(0);
         for (String key : map.keySet())
@@ -144,7 +161,7 @@ public class Main {
                     break;
                 case "countdown":
                     countdownPlantaJ = Integer.valueOf((String)map.get(key));
-                    countdownPlantaM = Integer.valueOf((String)map.get(key));
+                    contadorMassimo = Integer.valueOf((String)map.get(key));
                     break;
                 case "almacenBotonesPlanta1":
                     almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));

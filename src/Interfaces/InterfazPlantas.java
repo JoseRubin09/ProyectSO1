@@ -54,10 +54,16 @@ import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
 import Classes.JefeJ;
 import static Classes.Main.InterfazGrafica;
+import static Classes.Main.contadorMassimo;
 import static Classes.Main.ensamblador;
 import static Classes.Main.gerenteJ;
 import static Classes.Main.jefeJ;
 import static Classes.Main.numeroMaximoEmpleadosM;
+import static Classes.Main.pilaEnsambladoresM;
+import static Classes.Main.pilaProductoresBotonesM;
+import static Classes.Main.pilaProductoresCamarasM;
+import static Classes.Main.pilaProductoresPantallasM;
+import static Classes.Main.pilaProductoresPinesM;
 import static Classes.Main.producBotonesJ;
 import static Classes.Main.producCamsJ;
 import static Classes.Main.producNumBotonesJ;
@@ -72,6 +78,7 @@ import Classes.ProductoresCamarasJ;
 import Classes.ProductoresPantallasJ;
 import Classes.ProductoresPinesJ;
 import com.sun.tools.javac.Main;
+import java.util.Stack;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,6 +101,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
     public int numProducCamJ = producNumCamsJ;
     public int numProducPinesJ = producNumPinesJ;
     public int countdown;
+    
+    public static Dashboard InterfazDash= new Dashboard();
     public InterfazPlantas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -109,6 +118,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
         this.numProducCamJ = 1;
         this.numProducPinesJ = 1;
         this.countdown = 30;
+        
+        
+        
+        
         
     }
 
@@ -224,6 +237,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         JefePerdido1 = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
         jLabel63 = new javax.swing.JLabel();
+        Dashboard = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -754,7 +768,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
                 stopActionPerformed(evt);
             }
         });
-        jPanel2.add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 700, 90, 90));
+        jPanel2.add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, 90, 90));
 
         jLabel62.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel62.setText("Countdown 2");
@@ -789,6 +803,14 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
         jLabel63.setText("Perdida Total Jefe 1");
         jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 610, -1, -1));
+
+        Dashboard.setText("Dashboard");
+        Dashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DashboardActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 700, 90, 90));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 830));
 
@@ -920,6 +942,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if(numEnsambladoresM > 1){
             numEnsambladoresM--;
             Ensambladores2.setText(Integer.toString(numEnsambladoresM));
+            if(contadorMassimo<30){
+                pilaEnsambladoresM.peek().stopToggle();
+                pilaEnsambladoresM.pop();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Despedido el jefe");
         }
@@ -931,9 +957,21 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonSumEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumEnsam2ActionPerformed
         // TODO add your handling code here:
+        
         if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
-                    numEnsambladoresM++;
+            numEnsambladoresM++;
             Ensambladores2.setText(Integer.toString(numEnsambladoresM));
+            
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadEnsamblador = new EnsambladoresM(1);
+                ThreadEnsamblador.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaEnsambladoresM.push(ThreadEnsamblador);
+                
+                
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
         }
@@ -961,6 +999,11 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if(numProductoresPines > 1){
             numProductoresPines--;
             ProductoresPines2.setText(Integer.toString(numProductoresPines));
+            
+            if(contadorMassimo<30){
+                pilaProductoresPinesM.peek().stopToggle();
+                pilaProductoresPinesM.pop();
+            }
 
         }else{
             JOptionPane.showMessageDialog(null, "Despedido el jefe");
@@ -973,6 +1016,17 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
         numProductoresPines++;
         ProductoresPines2.setText(Integer.toString(numProductoresPines));
+        
+        if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadPines = new ProductoresPinesM(1, almacenPinesM);
+                ThreadPines.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresPinesM.push(ThreadPines);
+                
+                
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
         }
@@ -1000,6 +1054,12 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if(numProductoresCamaras > 1){
             numProductoresCamaras--;
             ProductoresCams2.setText(Integer.toString(numProductoresCamaras));
+            
+               
+            if(contadorMassimo<30){
+                pilaProductoresCamarasM.peek().stopToggle();
+                pilaProductoresCamarasM.pop();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Despedido el jefe");
         }
@@ -1010,6 +1070,11 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if(numProductoresPantallas > 1){
             numProductoresPantallas--;
             ProductoresPant2.setText(Integer.toString(numProductoresPantallas));
+   
+            if(contadorMassimo<30){
+                pilaProductoresPantallasM.peek().stopToggle();
+                pilaProductoresPantallasM.pop();
+            }
 
         }else{
             JOptionPane.showMessageDialog(null, "Despedido el jefe");
@@ -1022,6 +1087,11 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if(numProductoresBotones > 1){
             numProductoresBotones--;
             ProductoresB2.setText(Integer.toString(numProductoresBotones));
+            
+            if(contadorMassimo<30){
+                pilaProductoresBotonesM.peek().stopToggle();
+                pilaProductoresBotonesM.pop();
+            }
 
         }else{
             JOptionPane.showMessageDialog(null, "Despedido el jefe");
@@ -1035,6 +1105,17 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
             numProductoresPantallas++;
             ProductoresPant2.setText(Integer.toString(numProductoresPantallas));
+            
+                if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadPantallas = new ProductoresPantallasM(1, almacenPantallasM);
+                ThreadPantallas.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresPantallasM.push(ThreadPantallas);
+                
+                
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
         }
@@ -1047,6 +1128,17 @@ public class InterfazPlantas extends javax.swing.JFrame {
         if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
         numProductoresCamaras++;
         ProductoresCams2.setText(Integer.toString(numProductoresCamaras));
+        
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadCamaras = new ProductoresCamarasM(1, almacenCamarasM);
+                ThreadCamaras.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresCamarasM.push(ThreadCamaras);
+                
+                
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
         }
@@ -1055,9 +1147,20 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonSumBotones2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones2ActionPerformed
         // TODO add your handling code here:
-                if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
+        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
         numProductoresBotones++;
         ProductoresB2.setText(Integer.toString(numProductoresBotones));
+        
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadBotones = new ProductoresBotonesM(1, almacenBotonesM);
+                ThreadBotones.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresBotonesM.push(ThreadBotones);
+                
+                
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
         }
@@ -1148,6 +1251,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
             ThreadBotones = new ProductoresBotonesM(i, almacenBotonesM);
             
             ThreadBotones.start();
+            //Apilo cada thread a la pila  de productores botones
+            pilaProductoresBotonesM.push(ThreadBotones);
 
             
         }
@@ -1157,6 +1262,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
  
             ThreadPantallas = new ProductoresPantallasM(i, almacenPantallasM);
             ThreadPantallas.start();
+            //Apilo cada thread a la pila  de productores pantallas
+            pilaProductoresPantallasM.push(ThreadPantallas);
+            
+            
 
             
         }
@@ -1166,6 +1275,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
  
             ThreadCamaras = new ProductoresCamarasM(i, almacenCamarasM);
             ThreadCamaras.start();
+            //Apilo cada thread a la pila  de productores camaras
+            pilaProductoresCamarasM.push(ThreadCamaras);
 
             
         }
@@ -1176,8 +1287,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
  
             ThreadPines = new ProductoresPinesM(i, almacenPinesM);
             ThreadPines.start();
-
-            
+            //Apilo cada thread a la pila  de productores pines
+            pilaProductoresPinesM.push(ThreadPines);
         }
         
         for (int i = 0; i < numEnsambladoresM; i++) {
@@ -1185,6 +1296,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
  
             ThreadEnsamblador = new EnsambladoresM(i);
             ThreadEnsamblador.start();
+             //Apilo cada thread a la pila  de ensambladores
+            pilaEnsambladoresM.push(ThreadEnsamblador);
 
             
         }
@@ -1217,6 +1330,39 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
         // TODO add your handling code here:
+        while(!pilaProductoresPantallasM.isEmpty()){
+            pilaProductoresPantallasM.peek().stopToggle();
+            pilaProductoresPantallasM.pop();
+            
+        }
+        
+        while(!pilaProductoresBotonesM.isEmpty()){
+            pilaProductoresBotonesM.peek().stopToggle();
+            pilaProductoresBotonesM.pop();
+            
+        }
+        
+        while(!pilaProductoresCamarasM.isEmpty()){
+            pilaProductoresCamarasM.peek().stopToggle();
+            pilaProductoresCamarasM.pop();
+            
+        }
+        
+        while(!pilaProductoresPinesM.isEmpty()){
+            pilaProductoresPinesM.peek().stopToggle();
+            pilaProductoresPinesM.pop();
+            
+        }   
+        while(!pilaEnsambladoresM.isEmpty()){
+            pilaEnsambladoresM.peek().stopToggle();
+            pilaEnsambladoresM.pop();
+            
+        }  
+        
+        
+        //mato los threads gerente y jefe
+        Classes.Main.ThreadGerenteM.stopToggle();
+        Classes.Main.ThreadJefeM.stopToggle();
     }//GEN-LAST:event_stopActionPerformed
 
     private void countdownMASSIMOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countdownMASSIMOActionPerformed
@@ -1230,6 +1376,11 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private void JefePerdido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JefePerdido2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JefePerdido2ActionPerformed
+
+    private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
+        // TODO add your handling code here:
+        InterfazDash.setVisible(true);
+    }//GEN-LAST:event_DashboardActionPerformed
                                    
                                              
                                           
@@ -1237,6 +1388,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1297,6 +1449,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private javax.swing.JButton BotonSumPant2;
     private javax.swing.JButton BotonSumPines1;
     private javax.swing.JButton BotonSumPines2;
+    private javax.swing.JButton Dashboard;
     public static javax.swing.JTextField Ensambladores1;
     public static javax.swing.JTextField Ensambladores2;
     public static javax.swing.JTextField GananciasTotales1;

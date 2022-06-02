@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Classes;
+import static Classes.Main.ThreadGerenteM;
+import static Classes.Main.pilaEnsambladoresM;
+import static Classes.Main.pilaProductoresBotonesM;
+import static Classes.Main.pilaProductoresCamarasM;
+import static Classes.Main.pilaProductoresPantallasM;
+import static Classes.Main.pilaProductoresPinesM;
 import static Classes.Main.tiempoDia;
 import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
@@ -77,8 +83,42 @@ public class JefeM extends Thread {
             }
             
             }else{
+                //SE MATAN TODOS LOS THREADS
                 
-                this.stopToggle();
+                while(!pilaProductoresPantallasM.isEmpty()){
+                    pilaProductoresPantallasM.peek().stopToggle();
+                    pilaProductoresPantallasM.pop();
+                
+                     }
+        
+                while(!pilaProductoresBotonesM.isEmpty()){
+                    pilaProductoresBotonesM.peek().stopToggle();
+                    pilaProductoresBotonesM.pop();
+            
+                }
+        
+                while(!pilaProductoresCamarasM.isEmpty()){
+                    pilaProductoresCamarasM.peek().stopToggle();
+                  pilaProductoresCamarasM.pop();
+            
+             }
+        
+             while(!pilaProductoresPinesM.isEmpty()){
+                   pilaProductoresPinesM.peek().stopToggle();
+                   pilaProductoresPinesM.pop();
+            
+             }   
+              while(!pilaEnsambladoresM.isEmpty()){
+                 pilaEnsambladoresM.peek().stopToggle();
+                 pilaEnsambladoresM.pop();
+            
+              }  
+        
+        
+              //mato los threads gerente y jefe
+              Classes.Main.ThreadGerenteM.stopToggle();
+              Classes.Main.ThreadJefeM.stopToggle();
+
             }
 
     
