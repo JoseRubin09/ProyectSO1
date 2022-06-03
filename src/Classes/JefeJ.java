@@ -44,13 +44,9 @@ public class JefeJ extends Thread{
             
             if (Main.countdownPlantaJ > 0) {
                 
-            
-//            mutex.acquire();
-
             Main.mutexCont.acquire();
 
             Thread.sleep(tiempoDia*208,3);
-            
             
             Main.countdownPlantaJ--;
             diaActual++;

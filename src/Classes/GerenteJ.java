@@ -75,9 +75,6 @@ public class GerenteJ extends Thread{
                     Thread.sleep(tiempoDia*n);
                 }
                 
-                
-                
-                
             }else{
                 Main.mutexCont.release();
                 Main.numTelef =0;
@@ -87,11 +84,6 @@ public class GerenteJ extends Thread{
             Main.estadoGerenteJ = "Casa";
             InterfazPlantas.TextGerentePlanta1.setText(Main.estadoGerenteJ);
             Thread.sleep(tiempoDia*(MinutosEnUnDia-PeriodoTrabajoJ));
-            
-            
-      
-
-    
             
         } catch (InterruptedException ex) {
             Logger.getLogger(GerenteJ.class.getName()).log(Level.SEVERE, null, ex);
