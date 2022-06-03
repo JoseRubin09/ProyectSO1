@@ -61,7 +61,6 @@ public class EnsambladoresJ extends Thread{
                     Main.mutexPhones.acquire();
                     Main.numTelef++;
                     InterfazPlantas.TelefonosPlanta1.setText(Integer.toString(Main.numTelef));
-                    System.out.println("HICE UN TELEFONO JEJE" + Main.numTelef);
                     Main.mutexPhones.release();
 
                     Main.mutexAssemb.release();
