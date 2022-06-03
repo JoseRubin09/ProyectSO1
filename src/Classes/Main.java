@@ -74,14 +74,14 @@ public class Main {
     public static int numProductoresCamaras=1;
     
     //Productor Pin
-    public static Semaphore semPines = new Semaphore(9999);
+    public static Semaphore semPines = new Semaphore(15);
     public static ProductoresPinesM ThreadPines;
     public static Semaphore mutexPines = new Semaphore(1);
     public static volatile int almacenPinesM = 0;
     public static int numProductoresPines=1;
     
     //Ensambladores Massimo
-    public static Semaphore semEnsamblador = new Semaphore(1000);
+    public static Semaphore semEnsamblador = new Semaphore(10000);
     public static EnsambladoresM ThreadEnsamblador;
     
     public static volatile int almacenTelefonosM = 0;
@@ -105,6 +105,9 @@ public class Main {
     //INterfaz massimo
     public static int numeroMaximoEmpleadosM=14;
     
+    //Semaforos
+    public static int AlmacenInf=1;
+    
     //Pila productores massimo
     public static Stack<ProductoresPantallasM> pilaProductoresPantallasM= new Stack<ProductoresPantallasM>();
     public static Stack<ProductoresCamarasM> pilaProductoresCamarasM= new Stack<ProductoresCamarasM>();
@@ -122,6 +125,7 @@ public class Main {
     public static Semaphore semCamarasJ = new Semaphore(20);
     public static Semaphore semPantJ = new Semaphore(40);
     public static Semaphore semBotonesJ = new Semaphore(45);
+    public static Semaphore semPinesJ = new Semaphore(15);
     public static Semaphore mutexBotons = new Semaphore(1);
     public static Semaphore mutexPants = new Semaphore(1);
     public static Semaphore mutexCams = new Semaphore(1);

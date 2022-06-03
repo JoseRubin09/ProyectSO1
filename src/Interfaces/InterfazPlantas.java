@@ -37,6 +37,8 @@ import static Classes.Main.ThreadPines;
 import static Classes.Main.almacenBotonesM;
 import static Classes.Main.almacenCamarasM;
 import static Classes.Main.almacenPantallasM;
+import static Classes.Main.almacenTelefonosM;
+
 import static Classes.Main.almacenPinesM;
 import static Classes.Main.numEnsambladoresM;
 import static Classes.Main.numJefeM;
@@ -53,13 +55,18 @@ import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
 import Classes.GetDatos;
 import Classes.JefeJ;
+import static Classes.Main.AlmacenInf;
 import static Classes.Main.InterfazGrafica;
 import static Classes.Main.contadorMassimo;
 import static Classes.Main.countdownPlantaJ;
 import static Classes.Main.ensamblador;
 import static Classes.Main.gerenteJ;
 import static Classes.Main.jefeJ;
+import static Classes.Main.maxBotonesJ;
+import static Classes.Main.maxCamsJ;
+import static Classes.Main.maxPantJ;
 import static Classes.Main.numEnsamblador;
+import static Classes.Main.numPines;
 import static Classes.Main.numeroMaximoEmpleadosJ;
 import static Classes.Main.numeroMaximoEmpleadosM;
 import static Classes.Main.pilaEnsambladoresJ;
@@ -80,6 +87,8 @@ import static Classes.Main.producNumCamsJ;
 import static Classes.Main.producNumPantJ;
 import static Classes.Main.producNumPinesJ;
 import static Classes.Main.producPantJ;
+
+import static Classes.Main.numTelef;
 import static Classes.Main.producPins;
 import static Classes.Main.tiempoDia;
 import Classes.ProductoresBotonesJ;
@@ -87,11 +96,15 @@ import Classes.ProductoresCamarasJ;
 import Classes.ProductoresPantallasJ;
 import Classes.ProductoresPinesJ;
 import com.sun.tools.javac.Main;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.Stack;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -102,6 +115,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
     /**
      * Creates new form InterfazPlantas
      */
+    FondoPanel fondo = new FondoPanel();
     public int tDia = tiempoDia;
     public int t = 0;
     
@@ -110,6 +124,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
     public static GetDatos datum = new GetDatos();
     public static Dashboard InterfazDash= new Dashboard();
     public InterfazPlantas() {
+        this.setContentPane(fondo);
         initComponents();
         this.setLocationRelativeTo(null);
         Ensambladores1.setEditable(false);
@@ -167,6 +182,15 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel60 = new javax.swing.JLabel();
         jLabel61 = new javax.swing.JLabel();
         UltimoLote2 = new javax.swing.JTextField();
+        start = new javax.swing.JToggleButton();
+        stop = new javax.swing.JToggleButton();
+        jLabel62 = new javax.swing.JLabel();
+        countdownMASSIMO = new javax.swing.JTextField();
+        JefePerdido2 = new javax.swing.JTextField();
+        JefePerdido1 = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        Dashboard = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         BotonSumBotones2 = new javax.swing.JButton();
@@ -231,15 +255,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
         BotonSumEnsam1 = new javax.swing.JButton();
         BotonMenosEnsam1 = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
-        start = new javax.swing.JToggleButton();
-        stop = new javax.swing.JToggleButton();
-        jLabel62 = new javax.swing.JLabel();
-        countdownMASSIMO = new javax.swing.JTextField();
-        JefePerdido2 = new javax.swing.JTextField();
-        JefePerdido1 = new javax.swing.JTextField();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
-        Dashboard = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -386,6 +401,64 @@ public class InterfazPlantas extends javax.swing.JFrame {
             }
         });
         jPanel2.add(UltimoLote2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 480, 110, 30));
+
+        start.setText("Start");
+        start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startActionPerformed(evt);
+            }
+        });
+        jPanel2.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 710, 90, 90));
+
+        stop.setText("Stop");
+        stop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopActionPerformed(evt);
+            }
+        });
+        jPanel2.add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, 90, 90));
+
+        jLabel62.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel62.setText("Countdown 1");
+        jPanel2.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 110, -1));
+
+        countdownMASSIMO.setText("1");
+        countdownMASSIMO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countdownMASSIMOActionPerformed(evt);
+            }
+        });
+        jPanel2.add(countdownMASSIMO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 100, 30));
+
+        JefePerdido2.setText("1");
+        JefePerdido2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JefePerdido2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JefePerdido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 750, 70, 30));
+
+        JefePerdido1.setText("1");
+        JefePerdido1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JefePerdido1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JefePerdido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 70, 30));
+
+        jLabel64.setText("Telefonos Vendidos Ultimo Lote");
+        jPanel2.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, -1));
+
+        jLabel63.setText("Perdida Total Jefe 1");
+        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 610, -1, -1));
+
+        Dashboard.setText("Dashboard");
+        Dashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DashboardActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 700, 90, 90));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -577,7 +650,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         });
         jPanel3.add(BotonMenosEnsam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 60, 50));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 560, 440));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 570, 460));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -754,65 +827,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel54.setText("Ensambladores");
         jPanel4.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 550, 440));
-
-        start.setText("Start");
-        start.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startActionPerformed(evt);
-            }
-        });
-        jPanel2.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 700, 90, 90));
-
-        stop.setText("Stop");
-        stop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopActionPerformed(evt);
-            }
-        });
-        jPanel2.add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, 90, 90));
-
-        jLabel62.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel62.setText("Countdown 1");
-        jPanel2.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 110, -1));
-
-        countdownMASSIMO.setText("1");
-        countdownMASSIMO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                countdownMASSIMOActionPerformed(evt);
-            }
-        });
-        jPanel2.add(countdownMASSIMO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 100, 30));
-
-        JefePerdido2.setText("1");
-        JefePerdido2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JefePerdido2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(JefePerdido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 750, 70, 30));
-
-        JefePerdido1.setText("1");
-        JefePerdido1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JefePerdido1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(JefePerdido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 640, 70, 30));
-
-        jLabel64.setText("Telefonos Vendidos Ultimo Lote");
-        jPanel2.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 460, -1, -1));
-
-        jLabel63.setText("Perdida Total Jefe 1");
-        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 610, -1, -1));
-
-        Dashboard.setText("Dashboard");
-        Dashboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DashboardActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 700, 90, 90));
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 830));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 830));
 
@@ -1003,237 +1018,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BotonSumBotones1ActionPerformed
 
-    private void BotonMenosEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam2ActionPerformed
-        // TODO add your handling code here:
-        if(numEnsambladoresM > 1){
-            numEnsambladoresM--;
-            Ensambladores2.setText(Integer.toString(numEnsambladoresM));
-            if(contadorMassimo<30){
-                pilaEnsambladoresM.peek().stopToggle();
-                pilaEnsambladoresM.pop();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Despedido el jefe");
-        }
-    }//GEN-LAST:event_BotonMenosEnsam2ActionPerformed
-
-    private void Ensambladores2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ensambladores2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Ensambladores2ActionPerformed
-
-    private void BotonSumEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumEnsam2ActionPerformed
-        // TODO add your handling code here:
-        
-        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
-            numEnsambladoresM++;
-            Ensambladores2.setText(Integer.toString(numEnsambladoresM));
-            
-            if(contadorMassimo<30){
-                //System.out.println(contadorMassimo);
-                //System.out.println("si se puedeeeeeedfvsddg");
-                ThreadEnsamblador = new EnsambladoresM(1);
-                ThreadEnsamblador.start();
-                //Apilo cada thread a la pila  de ensambladores
-                pilaEnsambladoresM.push(ThreadEnsamblador);
-                
-                
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
-        }
-
-    }//GEN-LAST:event_BotonSumEnsam2ActionPerformed
-
-    private void TelefonosPlanta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonosPlanta2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TelefonosPlanta2ActionPerformed
-
-    private void AlmacenPinesP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenPinesP2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlmacenPinesP2ActionPerformed
-
-    private void AlmacenPantallasP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenPantallasP2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlmacenPantallasP2ActionPerformed
-
-    private void AlmacenCamsP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenCamsP2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlmacenCamsP2ActionPerformed
-
-    private void BotonMenosPines2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPines2ActionPerformed
-        // TODO add your handling code here:
-        if(numProductoresPines > 1){
-            numProductoresPines--;
-            ProductoresPines2.setText(Integer.toString(numProductoresPines));
-            
-            if(contadorMassimo<30){
-                pilaProductoresPinesM.peek().stopToggle();
-                pilaProductoresPinesM.pop();
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Despedido el jefe");
-        }
-    }//GEN-LAST:event_BotonMenosPines2ActionPerformed
-
-    private void BotonSumPines2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPines2ActionPerformed
-        // TODO add your handling code here:
-        
-        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
-        numProductoresPines++;
-        ProductoresPines2.setText(Integer.toString(numProductoresPines));
-        
-        if(contadorMassimo<30){
-                //System.out.println(contadorMassimo);
-                //System.out.println("si se puedeeeeeedfvsddg");
-                ThreadPines = new ProductoresPinesM(1, almacenPinesM);
-                ThreadPines.start();
-                //Apilo cada thread a la pila  de ensambladores
-                pilaProductoresPinesM.push(ThreadPines);
-                
-                
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
-        }
-
-    }//GEN-LAST:event_BotonSumPines2ActionPerformed
-
-    private void ProductoresPines2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPines2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductoresPines2ActionPerformed
-
-    private void ProductoresPant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPant2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductoresPant2ActionPerformed
-
-    private void ProductoresB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresB2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductoresB2ActionPerformed
-
-    private void ProductoresCams2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresCams2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductoresCams2ActionPerformed
-
-    private void BotonMenosCams2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosCams2ActionPerformed
-        // TODO add your handling code here:
-        if(numProductoresCamaras > 1){
-            numProductoresCamaras--;
-            ProductoresCams2.setText(Integer.toString(numProductoresCamaras));
-            
-               
-            if(contadorMassimo<30){
-                pilaProductoresCamarasM.peek().stopToggle();
-                pilaProductoresCamarasM.pop();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Despedido el jefe");
-        }
-    }//GEN-LAST:event_BotonMenosCams2ActionPerformed
-
-    private void BotonMenosPant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPant2ActionPerformed
-        // TODO add your handling code here:
-        if(numProductoresPantallas > 1){
-            numProductoresPantallas--;
-            ProductoresPant2.setText(Integer.toString(numProductoresPantallas));
-   
-            if(contadorMassimo<30){
-                pilaProductoresPantallasM.peek().stopToggle();
-                pilaProductoresPantallasM.pop();
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Despedido el jefe");
-        }
-    }//GEN-LAST:event_BotonMenosPant2ActionPerformed
-
-    private void BotonMenosBotones2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosBotones2ActionPerformed
-        // TODO add your handling code here:
-
-        if(numProductoresBotones > 1){
-            numProductoresBotones--;
-            ProductoresB2.setText(Integer.toString(numProductoresBotones));
-            
-            if(contadorMassimo<30){
-                pilaProductoresBotonesM.peek().stopToggle();
-                pilaProductoresBotonesM.pop();
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Despedido el jefe");
-        }
-
-    }//GEN-LAST:event_BotonMenosBotones2ActionPerformed
-
-    private void BotonSumPant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPant2ActionPerformed
-        // TODO add your handling code here:
-        
-        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
-            numProductoresPantallas++;
-            ProductoresPant2.setText(Integer.toString(numProductoresPantallas));
-            
-                if(contadorMassimo<30){
-                //System.out.println(contadorMassimo);
-                //System.out.println("si se puedeeeeeedfvsddg");
-                ThreadPantallas = new ProductoresPantallasM(1, almacenPantallasM);
-                ThreadPantallas.start();
-                //Apilo cada thread a la pila  de ensambladores
-                pilaProductoresPantallasM.push(ThreadPantallas);
-                
-                
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
-        }
-
-    }//GEN-LAST:event_BotonSumPant2ActionPerformed
-
-    private void BotonSumCams2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumCams2ActionPerformed
-        // TODO add your handling code here:
-        
-        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
-        numProductoresCamaras++;
-        ProductoresCams2.setText(Integer.toString(numProductoresCamaras));
-        
-            if(contadorMassimo<30){
-                //System.out.println(contadorMassimo);
-                //System.out.println("si se puedeeeeeedfvsddg");
-                ThreadCamaras = new ProductoresCamarasM(1, almacenCamarasM);
-                ThreadCamaras.start();
-                //Apilo cada thread a la pila  de ensambladores
-                pilaProductoresCamarasM.push(ThreadCamaras);
-                
-                
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
-        }
-
-    }//GEN-LAST:event_BotonSumCams2ActionPerformed
-
-    private void BotonSumBotones2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones2ActionPerformed
-        // TODO add your handling code here:
-        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
-        numProductoresBotones++;
-        ProductoresB2.setText(Integer.toString(numProductoresBotones));
-        
-            if(contadorMassimo<30){
-                //System.out.println(contadorMassimo);
-                //System.out.println("si se puedeeeeeedfvsddg");
-                ThreadBotones = new ProductoresBotonesM(1, almacenBotonesM);
-                ThreadBotones.start();
-                //Apilo cada thread a la pila  de ensambladores
-                pilaProductoresBotonesM.push(ThreadBotones);
-                
-                
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
-        }
-        
-
-    }//GEN-LAST:event_BotonSumBotones2ActionPerformed
-
     private void UltimoLote2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UltimoLote2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UltimoLote2ActionPerformed
@@ -1280,6 +1064,58 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         // TODO add your handling code here:
+        countdownPlantaJ = 30;
+        
+        contadorMassimo = 30;
+
+            
+
+        Classes.Main.semPantallas.release(almacenPantallasM);
+        almacenPantallasM=0;     
+        InterfazPlantas.AlmacenPantallasP2.setText(Integer.toString(Classes.Main.almacenPantallasM));
+            
+        
+        Classes.Main.semBotones.release(almacenBotonesM);
+        almacenBotonesM = 0;
+       InterfazPlantas.AlmacenBotonesP2.setText(Integer.toString(Classes.Main.almacenBotonesM));
+       
+        Classes.Main.semCamaras.release(almacenCamarasM);
+        almacenCamarasM = 0;
+        InterfazPlantas.AlmacenCamsP2.setText(Integer.toString(Classes.Main.almacenCamarasM));
+        
+        Classes.Main.semPines.release(almacenPinesM);
+        almacenPinesM = 0;
+        InterfazPlantas.AlmacenPinesP2.setText(Integer.toString(Classes.Main.almacenPinesM));
+        
+        
+        almacenTelefonosM = 0;
+        InterfazPlantas.TelefonosPlanta2.setText(Integer.toString(Classes.Main.almacenTelefonosM));
+        
+        
+        
+        //REINICIALIZAR SEMAFOROS Y ALMACENES JOSE
+        
+        Classes.Main.semPantJ.release(maxPantJ);
+        maxPantJ=0;     
+        InterfazPlantas.AlmacenPantallasP1.setText(Integer.toString(Classes.Main.maxPantJ));
+            
+        
+        Classes.Main.semBotonesJ.release(maxBotonesJ);
+        maxBotonesJ = 0;
+       InterfazPlantas.AlmacenBotonesP1.setText(Integer.toString(Classes.Main.maxBotonesJ));
+       
+        Classes.Main.semCamarasJ.release(maxCamsJ);
+        maxCamsJ = 0;
+        InterfazPlantas.AlmacenCamsP1.setText(Integer.toString(Classes.Main.maxCamsJ));
+        
+        Classes.Main.semPinesJ.release(numPines);
+        numPines = 0;
+        InterfazPlantas.AlmacenPinesP1.setText(Integer.toString(Classes.Main.numPines));
+        
+        
+        numTelef = 0;
+        InterfazPlantas.TelefonosPlanta1.setText(Integer.toString(Classes.Main.numTelef));
+        
         
         tiempoDia =  Integer.parseInt(TiempoDias.getText()) ;
         
@@ -1485,6 +1321,225 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
         InterfazDash.setVisible(true);
     }//GEN-LAST:event_DashboardActionPerformed
+
+    private void BotonMenosEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam2ActionPerformed
+        // TODO add your handling code here:
+        if(numEnsambladoresM > 1){
+            numEnsambladoresM--;
+            Ensambladores2.setText(Integer.toString(numEnsambladoresM));
+            if(contadorMassimo<30){
+                pilaEnsambladoresM.peek().stopToggle();
+                pilaEnsambladoresM.pop();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Despedido el jefe");
+        }
+    }//GEN-LAST:event_BotonMenosEnsam2ActionPerformed
+
+    private void Ensambladores2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ensambladores2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Ensambladores2ActionPerformed
+
+    private void BotonSumEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumEnsam2ActionPerformed
+        // TODO add your handling code here:
+
+        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
+            numEnsambladoresM++;
+            Ensambladores2.setText(Integer.toString(numEnsambladoresM));
+
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadEnsamblador = new EnsambladoresM(1);
+                ThreadEnsamblador.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaEnsambladoresM.push(ThreadEnsamblador);
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
+    }//GEN-LAST:event_BotonSumEnsam2ActionPerformed
+
+    private void TelefonosPlanta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelefonosPlanta2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TelefonosPlanta2ActionPerformed
+
+    private void AlmacenPinesP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenPinesP2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlmacenPinesP2ActionPerformed
+
+    private void AlmacenPantallasP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenPantallasP2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlmacenPantallasP2ActionPerformed
+
+    private void AlmacenCamsP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenCamsP2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlmacenCamsP2ActionPerformed
+
+    private void BotonMenosPines2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPines2ActionPerformed
+        // TODO add your handling code here:
+        if(numProductoresPines > 1){
+            numProductoresPines--;
+            ProductoresPines2.setText(Integer.toString(numProductoresPines));
+
+            if(contadorMassimo<30){
+                pilaProductoresPinesM.peek().stopToggle();
+                pilaProductoresPinesM.pop();
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Despedido el jefe");
+        }
+    }//GEN-LAST:event_BotonMenosPines2ActionPerformed
+
+    private void BotonSumPines2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPines2ActionPerformed
+        // TODO add your handling code here:
+
+        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
+            numProductoresPines++;
+            ProductoresPines2.setText(Integer.toString(numProductoresPines));
+
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadPines = new ProductoresPinesM(1, almacenPinesM);
+                ThreadPines.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresPinesM.push(ThreadPines);
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
+    }//GEN-LAST:event_BotonSumPines2ActionPerformed
+
+    private void ProductoresPines2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPines2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductoresPines2ActionPerformed
+
+    private void ProductoresPant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPant2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductoresPant2ActionPerformed
+
+    private void ProductoresB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresB2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductoresB2ActionPerformed
+
+    private void ProductoresCams2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresCams2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductoresCams2ActionPerformed
+
+    private void BotonMenosCams2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosCams2ActionPerformed
+        // TODO add your handling code here:
+        if(numProductoresCamaras > 1){
+            numProductoresCamaras--;
+            ProductoresCams2.setText(Integer.toString(numProductoresCamaras));
+
+            if(contadorMassimo<30){
+                pilaProductoresCamarasM.peek().stopToggle();
+                pilaProductoresCamarasM.pop();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Despedido el jefe");
+        }
+    }//GEN-LAST:event_BotonMenosCams2ActionPerformed
+
+    private void BotonMenosPant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPant2ActionPerformed
+        // TODO add your handling code here:
+        if(numProductoresPantallas > 1){
+            numProductoresPantallas--;
+            ProductoresPant2.setText(Integer.toString(numProductoresPantallas));
+
+            if(contadorMassimo<30){
+                pilaProductoresPantallasM.peek().stopToggle();
+                pilaProductoresPantallasM.pop();
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Despedido el jefe");
+        }
+    }//GEN-LAST:event_BotonMenosPant2ActionPerformed
+
+    private void BotonMenosBotones2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosBotones2ActionPerformed
+        // TODO add your handling code here:
+
+        if(numProductoresBotones > 1){
+            numProductoresBotones--;
+            ProductoresB2.setText(Integer.toString(numProductoresBotones));
+
+            if(contadorMassimo<30){
+                pilaProductoresBotonesM.peek().stopToggle();
+                pilaProductoresBotonesM.pop();
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Despedido el jefe");
+        }
+    }//GEN-LAST:event_BotonMenosBotones2ActionPerformed
+
+    private void BotonSumPant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPant2ActionPerformed
+        // TODO add your handling code here:
+
+        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
+            numProductoresPantallas++;
+            ProductoresPant2.setText(Integer.toString(numProductoresPantallas));
+
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadPantallas = new ProductoresPantallasM(1, almacenPantallasM);
+                ThreadPantallas.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresPantallasM.push(ThreadPantallas);
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
+    }//GEN-LAST:event_BotonSumPant2ActionPerformed
+
+    private void BotonSumCams2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumCams2ActionPerformed
+        // TODO add your handling code here:
+
+        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
+            numProductoresCamaras++;
+            ProductoresCams2.setText(Integer.toString(numProductoresCamaras));
+
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadCamaras = new ProductoresCamarasM(1, almacenCamarasM);
+                ThreadCamaras.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresCamarasM.push(ThreadCamaras);
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
+    }//GEN-LAST:event_BotonSumCams2ActionPerformed
+
+    private void BotonSumBotones2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones2ActionPerformed
+        // TODO add your handling code here:
+        if ((numEnsambladoresM+numProductoresPantallas+numProductoresBotones+numProductoresCamaras+numProductoresPines)<numeroMaximoEmpleadosM) {
+            numProductoresBotones++;
+            ProductoresB2.setText(Integer.toString(numProductoresBotones));
+
+            if(contadorMassimo<30){
+                //System.out.println(contadorMassimo);
+                //System.out.println("si se puedeeeeeedfvsddg");
+                ThreadBotones = new ProductoresBotonesM(1, almacenBotonesM);
+                ThreadBotones.start();
+                //Apilo cada thread a la pila  de ensambladores
+                pilaProductoresBotonesM.push(ThreadBotones);
+
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
+
+    }//GEN-LAST:event_BotonSumBotones2ActionPerformed
                                    
                                              
                                           
@@ -1630,4 +1685,17 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private javax.swing.JToggleButton start;
     private javax.swing.JToggleButton stop;
     // End of variables declaration//GEN-END:variables
+
+ class FondoPanel extends JPanel{
+     private Image imagen;
+     
+     public void paint(Graphics g){
+         imagen = new ImageIcon(getClass().getResource("/Imagenes/uno.jpeg")).getImage();
+         
+         g.drawImage(imagen, 0, 0,getWidth(), getHeight(),this);
+         setOpaque(false);
+         super.paint(g);
+     }
+ }
+
 }
