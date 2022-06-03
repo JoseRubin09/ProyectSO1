@@ -21,7 +21,8 @@ import java.util.logging.Logger;
 public class JefeM extends Thread {
     public boolean stop;
     public int diaActual = 0;
-    
+    public static WriteFile writeNewData = new WriteFile();
+
     
     private int threadNumber;
 
@@ -83,14 +84,13 @@ public class JefeM extends Thread {
             }
             
             }else{
-                //SE MATAN TODOS LOS THREADS
                 
+                //SE MATAN TODOS LOS THREADS
                 while(!pilaProductoresPantallasM.isEmpty()){
                     pilaProductoresPantallasM.peek().stopToggle();
                     pilaProductoresPantallasM.pop();
                 
-                     }
-        
+                }
                 while(!pilaProductoresBotonesM.isEmpty()){
                     pilaProductoresBotonesM.peek().stopToggle();
                     pilaProductoresBotonesM.pop();
@@ -101,24 +101,24 @@ public class JefeM extends Thread {
                     pilaProductoresCamarasM.peek().stopToggle();
                   pilaProductoresCamarasM.pop();
             
-             }
+                }
         
-             while(!pilaProductoresPinesM.isEmpty()){
+                while(!pilaProductoresPinesM.isEmpty()){
                    pilaProductoresPinesM.peek().stopToggle();
                    pilaProductoresPinesM.pop();
             
-             }   
-              while(!pilaEnsambladoresM.isEmpty()){
+                }   
+                while(!pilaEnsambladoresM.isEmpty()){
                  pilaEnsambladoresM.peek().stopToggle();
                  pilaEnsambladoresM.pop();
             
-              }  
+                }  
         
         
-              //mato los threads gerente y jefe
-              Classes.Main.ThreadGerenteM.stopToggle();
-              Classes.Main.ThreadJefeM.stopToggle();
-
+                //mato los threads gerente y jefe
+                Classes.Main.ThreadGerenteM.stopToggle();
+                Classes.Main.ThreadJefeM.stopToggle();
+                writeNewData.writeData();
             }
 
     
