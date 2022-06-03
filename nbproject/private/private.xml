@@ -3,16 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Interfaces/InterfazPlantas.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/GerenteM.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/ProductoresPinesM.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Files/DataPlantas.json</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/EnsambladoresM.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/ProductoresPantallasM.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/Main.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/ProductoresBotonesM.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/JefeM.java</file>
-            <file>file:/Users/massimo/SO/PROYECTO/ProyectSO1/src/Classes/ProductoresCamarasM.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/WriteFile.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/GerenteM.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/ProductoresBotonesM.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Files/DataHistorica.json</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/GetDatos.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/JefeJ.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/EnsambladoresM.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/EnsambladoresJ.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/ProductoresBotonesJ.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/JefeM.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Interfaces/Dashboard.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Files/DataPlantas.json</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/Main.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Interfaces/InterfazPlantas.java</file>
+            <file>file:/C:/Users/Jose%20Rubin/Desktop/Projects/ProyectSO1/src/Classes/ReadFile.java</file>
         </group>
     </open-files>
 </project-private>

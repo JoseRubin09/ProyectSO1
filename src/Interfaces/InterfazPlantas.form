@@ -142,7 +142,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Countdown 1"/>
+                <Property name="text" type="java.lang.String" value="Countdown 2"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -282,7 +282,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="GastosSalario2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Durmiendo...."/>
+                <Property name="text" type="java.lang.String" value="Money"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GastosSalario2ActionPerformed"/>
@@ -334,7 +334,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="GananciasTotales2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Durmiendo...."/>
+                <Property name="text" type="java.lang.String" value="Money"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GananciasTotales2ActionPerformed"/>
@@ -348,12 +348,12 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JTextField" name="GastosSalario5">
+            <Component class="javax.swing.JTextField" name="GastosSalario1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Money"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GastosSalario5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GastosSalario1ActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -1242,7 +1242,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Countdown 2"/>
+                <Property name="text" type="java.lang.String" value="Countdown 1"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

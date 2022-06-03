@@ -35,7 +35,6 @@ public class ProductoresCamarasJ extends Thread{
                 Main.mutexCams.acquire();
                 Main.maxCamsJ++;
                 InterfazPlantas.AlmacenCamsP1.setText(Integer.toString(Main.maxCamsJ));
-                System.out.println("TENGO --> " +Main.maxCamsJ);
                 Main.mutexCams.release();
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
