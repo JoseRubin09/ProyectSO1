@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Interfaces.InterfazPlantas;
+import static Interfaces.InterfazPlantas.Ensambladores1;
 import static Interfaces.InterfazPlantas.Ensambladores2;
 import static Interfaces.InterfazPlantas.ProductoresB2;
 import static Interfaces.InterfazPlantas.ProductoresCams2;
@@ -34,9 +35,10 @@ public class Main {
      */
     public static InterfazPlantas InterfazGrafica = new InterfazPlantas();
     public static int tiempoDia;
-    public static volatile int countdownPlantaJ=30;
+    public static volatile int countdownPlantaJ;
     public static volatile int countdownPlantaM=30;
-    
+    public static int numeroMaximoEmpleadosJ=15;
+
     //Productor Pantalla yaaaa
     public static Semaphore semPantallas = new Semaphore(40);
     //Productor Pantalla
@@ -44,6 +46,16 @@ public class Main {
     public static Semaphore mutexPantallas = new Semaphore(1);
     public static volatile int almacenPantallasM =0;
     public static int numProductoresPantallas=1;
+    public static int numMaxPantsM;
+    public static int numMaxPantsJ;
+    public static int numMaxBotM;
+    public static int numMaxBotJ;
+    public static int numMaxCamsM;
+    public static int numMaxCamsJ;
+    public static int numMaxPinsM;
+    public static int numMaxPinsJ;
+    public static int numEnsamM;
+    
     
     
     
@@ -62,7 +74,7 @@ public class Main {
     public static int numProductoresCamaras=1;
     
     //Productor Pin
-    public static Semaphore semPines = new Semaphore(15);
+    public static Semaphore semPines = new Semaphore(9999);
     public static ProductoresPinesM ThreadPines;
     public static Semaphore mutexPines = new Semaphore(1);
     public static volatile int almacenPinesM = 0;
@@ -99,9 +111,12 @@ public class Main {
     public static Stack<ProductoresBotonesM> pilaProductoresBotonesM= new Stack<ProductoresBotonesM>();
     public static Stack<ProductoresPinesM> pilaProductoresPinesM= new Stack<ProductoresPinesM>();
     public static Stack<EnsambladoresM> pilaEnsambladoresM= new Stack<EnsambladoresM>();
-    
-    
-    
+    //Pila productores jose
+    public static Stack<ProductoresPantallasJ> pilaProductoresPantallasJ= new Stack<ProductoresPantallasJ>();
+    public static Stack<ProductoresCamarasJ> pilaProductoresCamarasJ= new Stack<ProductoresCamarasJ>();
+    public static Stack<ProductoresBotonesJ> pilaProductoresBotonesJ= new Stack<ProductoresBotonesJ>();
+    public static Stack<ProductoresPinesJ> pilaProductoresPinesJ= new Stack<ProductoresPinesJ>();
+    public static Stack<EnsambladoresJ> pilaEnsambladoresJ= new Stack<EnsambladoresJ>();
     
     //Rubin Variables
     public static Semaphore semCamarasJ = new Semaphore(20);
@@ -113,6 +128,10 @@ public class Main {
     public static Semaphore mutexPins = new Semaphore(1);
     public static Semaphore mutexPhones = new Semaphore(1);
     public static Semaphore mutexAssemb = new Semaphore(1);
+    public static Semaphore mutexCont = new Semaphore(1);
+    public static String estadoGerenteJ="";
+    public static String estadoJefeJ="";
+    public static int descuentoJefeJ=0;
     public static volatile int maxBotonesJ = 0;
     public static volatile int maxCamsJ = 0;
     public static volatile int maxPantJ = 0;
@@ -129,6 +148,7 @@ public class Main {
     public static volatile int producNumBotonesM;
     public static volatile int producNumCamsM;
     public static volatile int producNumPantM;
+    public static volatile int producNumPinesM;
     
     public static volatile int numTelef = 0;
     public static volatile int almcenMaxBotonesJ;
@@ -143,66 +163,28 @@ public class Main {
     public static ProductoresCamarasJ producCamsJ;
     public static ProductoresPantallasJ producPantJ;
     public static ReadFile txtAction = new ReadFile();
-    ArrayList dataList = new ArrayList();
+    public static GetDatos datum = new GetDatos();
+    public static WriteFile writeNewData = new WriteFile();
+    
+    public static int promedioGastos1;
+    public static int promedioGastos2;
+    public static int promedioGanancias1;
+    public static int promedioGanancias2;
+    public static int promedioTelefGanancias1;
+    public static int promedioTelefGanancias2;
+    public static int promedioNumTotalTelef1;
+    public static int promedioNumTotalTelef2;
+    public static int promedioPerdidaJefes1;
+    public static int promedioPerdidaJefes2;
+
+    
 
     public static void main(String[] args) {
         // TODO code application logic here
         
-        
-        
-        
-        
-        JSONArray data = txtAction.readJson("/Users/massimo/SO/PROYECTO/ProyectSO1/src/Files/DataPlantas.json");
-        Map<String, Object> map = (Map<String, Object>) data.get(0);
-        for (String key : map.keySet())
-            switch(key){
-                case "tiempoDia": 
-                    tiempoDia = Integer.valueOf((String)map.get(key));
-                    break;
-                case "countdown":
-                    countdownPlantaJ = Integer.valueOf((String)map.get(key));
-                    contadorMassimo = Integer.valueOf((String)map.get(key));
-                    break;
-                case "almacenBotonesPlanta1":
-                    almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));
-                    break;
-                case "producBotonesPlanta2":
-                    almcenMaxBotonesJ = Integer.valueOf((String)map.get(key));
-                    break;
-                case "almacenPantsPlanta1":
-                    almcenMaxPantJ = Integer.valueOf((String)map.get(key));
-                    break;
-                case "producPantsPlanta1":
-                    almcenMaxPantJ = Integer.valueOf((String)map.get(key));
-                    break;
-                case "almacenCamsPlanta1":
-                    almcenMaxCamsJ = Integer.valueOf((String)map.get(key));
-                    break;
-                case "producCamsPlanta1":
-                    almcenMaxCamsJ = Integer.valueOf((String)map.get(key));
-                    break;
-                case "ensambladoresPlanta1":
-                    numEnsamblador = Integer.valueOf((String)map.get(key));
-                    break;
-                case "almacenBotonesPlanta2":
-                    almacenBotonesM = Integer.valueOf((String)map.get(key));
-                    
-                    break;
-                case "almacenPantsPlanta2":
-                    almacenPantallasM = Integer.valueOf((String)map.get(key));
-                    
-                    break;
-                case "almacenCamsPlanta2":
-                    almacenCamarasM = Integer.valueOf((String)map.get(key));
-                    
-                    break;
-                case "ensambladoresPlanta2":
-                    numEnsambladoresM = Integer.valueOf((String)map.get(key));
-                    System.out.println(numEnsambladoresM);
-                    Ensambladores2.setText(Integer.toString(numEnsambladoresM));
-                    break;
-            }
-            
+        datum.getData();
+//        writeNewData.writeData();
+
         InterfazGrafica.setVisible(true);
     }
 }

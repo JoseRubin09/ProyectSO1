@@ -8,7 +8,6 @@ package Interfaces;
 import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
 import Classes.JefeJ;
-import static Classes.Main.InterfazGrafica;
 import static Classes.Main.ensamblador;
 import static Classes.Main.gerenteJ;
 import static Classes.Main.jefeJ;
@@ -52,17 +51,27 @@ import Classes.ProductoresPantallasM;
 import Classes.ProductoresPinesM;
 import Classes.EnsambladoresJ;
 import Classes.GerenteJ;
+import Classes.GetDatos;
 import Classes.JefeJ;
 import static Classes.Main.InterfazGrafica;
 import static Classes.Main.contadorMassimo;
+import static Classes.Main.countdownPlantaJ;
 import static Classes.Main.ensamblador;
 import static Classes.Main.gerenteJ;
 import static Classes.Main.jefeJ;
+import static Classes.Main.numEnsamblador;
+import static Classes.Main.numeroMaximoEmpleadosJ;
 import static Classes.Main.numeroMaximoEmpleadosM;
+import static Classes.Main.pilaEnsambladoresJ;
 import static Classes.Main.pilaEnsambladoresM;
+import static Classes.Main.pilaProductoresBotonesJ;
 import static Classes.Main.pilaProductoresBotonesM;
+import static Classes.Main.pilaProductoresCamarasJ;
 import static Classes.Main.pilaProductoresCamarasM;
+import static Classes.Main.pilaProductoresPantallasJ;
 import static Classes.Main.pilaProductoresPantallasM;
+import static Classes.Main.pilaProductoresPinesJ;
+
 import static Classes.Main.pilaProductoresPinesM;
 import static Classes.Main.producBotonesJ;
 import static Classes.Main.producCamsJ;
@@ -95,13 +104,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
      */
     public int tDia = tiempoDia;
     public int t = 0;
-    public int numEnsamJ;
-    public int numProducBotJ = producNumBotonesJ;
-    public int numProducPantJ = producNumPantJ;
-    public int numProducCamJ = producNumCamsJ;
-    public int numProducPinesJ = producNumPinesJ;
-    public int countdown;
     
+//    ARREGLAR VARIABLEKS GLOBALES
+    public int countdown;
+    public static GetDatos datum = new GetDatos();
     public static Dashboard InterfazDash= new Dashboard();
     public InterfazPlantas() {
         initComponents();
@@ -112,11 +118,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         ProductoresCams1.setEditable(false);
         ProductoresPines1.setEditable(false);
         AlmacenBotonesP1.setEditable(false);
-        this.numProducBotJ = 1;
-        this.numEnsamJ = 1;
-        this.numProducPantJ = 1;
-        this.numProducCamJ = 1;
-        this.numProducPinesJ = 1;
+        
         this.countdown = 30;
         
         
@@ -161,7 +163,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         GananciasTotales1 = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
         GananciasTotales2 = new javax.swing.JTextField();
-        GastosSalario5 = new javax.swing.JTextField();
+        GastosSalario1 = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
         jLabel61 = new javax.swing.JLabel();
         UltimoLote2 = new javax.swing.JTextField();
@@ -274,7 +276,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jPanel2.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 760, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel50.setText("Countdown 1");
+        jLabel50.setText("Countdown 2");
         jPanel2.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 110, -1));
 
         countdownJOSE.setText("1");
@@ -333,7 +335,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel57.setText("Gastos en Salarios Planta 2");
         jPanel2.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 640, -1, -1));
 
-        GastosSalario2.setText("Durmiendo....");
+        GastosSalario2.setText("Money");
         GastosSalario2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GastosSalario2ActionPerformed(evt);
@@ -355,7 +357,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jLabel59.setText("Ganancia Total Planta 2");
         jPanel2.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 760, -1, -1));
 
-        GananciasTotales2.setText("Durmiendo....");
+        GananciasTotales2.setText("Money");
         GananciasTotales2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GananciasTotales2ActionPerformed(evt);
@@ -363,13 +365,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
         });
         jPanel2.add(GananciasTotales2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 780, 240, 30));
 
-        GastosSalario5.setText("Money");
-        GastosSalario5.addActionListener(new java.awt.event.ActionListener() {
+        GastosSalario1.setText("Money");
+        GastosSalario1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GastosSalario5ActionPerformed(evt);
+                GastosSalario1ActionPerformed(evt);
             }
         });
-        jPanel2.add(GastosSalario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, 240, 30));
+        jPanel2.add(GastosSalario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 600, 240, 30));
 
         jLabel60.setText("Gastos en Salarios Planta 1");
         jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 580, -1, -1));
@@ -771,7 +773,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         jPanel2.add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 700, 90, 90));
 
         jLabel62.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel62.setText("Countdown 2");
+        jLabel62.setText("Countdown 1");
         jPanel2.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 110, -1));
 
         countdownMASSIMO.setText("1");
@@ -820,15 +822,14 @@ public class InterfazPlantas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonMenosEnsam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam1ActionPerformed
-        // TODO add your handling code here:
-        if(numProducBotJ > 1){
-            numProducBotJ--;
-            Ensambladores1.setText(Integer.toString(numProducBotJ));
-        }
         // Botones Menos
-        if(numEnsamJ >= 1){
-            numEnsamJ--;
-            Ensambladores1.setText(Integer.toString(numEnsamJ));
+        if(numEnsamblador > 1){
+            numEnsamblador--;
+            Ensambladores1.setText(Integer.toString(numEnsamblador));
+            if(countdownPlantaJ<30){
+                pilaEnsambladoresJ.peek().stopToggle();
+                pilaEnsambladoresJ.pop();
+            }
         } else{
             TextGerentePlanta1.setText("Despedido bro fuera de aqui");
         }
@@ -836,8 +837,18 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonSumEnsam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumEnsam1ActionPerformed
         // TODO add your handling code here:
-        numEnsamJ++;
-        Ensambladores1.setText(Integer.toString(numEnsamJ));
+        if ((numEnsamblador+producNumBotonesJ+producNumCamsJ+producNumPantJ+producNumPinesJ)<numeroMaximoEmpleadosJ) {
+            numEnsamblador++;
+            Ensambladores1.setText(Integer.toString(numEnsamblador));
+            
+            if(countdownPlantaJ<30){
+                ensamblador = new EnsambladoresJ(1);
+                ensamblador.start();
+                pilaEnsambladoresJ.push(ensamblador);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
     }//GEN-LAST:event_BotonSumEnsam1ActionPerformed
 
     private void Ensambladores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ensambladores1ActionPerformed
@@ -858,9 +869,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPines1ActionPerformed
         // TODO add your handling code here:
-        if(numProducPinesJ > 1){
-            numProducPinesJ--;
-            ProductoresPines1.setText(Integer.toString(numProducPinesJ));
+        if(producNumPinesJ > 1){
+            producNumPinesJ--;
+            ProductoresPines1.setText(Integer.toString(producNumPinesJ));
+            if(countdownPlantaJ<30){
+                pilaProductoresPinesJ.peek().stopToggle();
+                pilaProductoresPinesJ.pop();
+            }
         }
 
         else{
@@ -870,8 +885,17 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonSumPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPines1ActionPerformed
         // TODO add your handling code here:
-        numProducPinesJ++;
-        ProductoresPines1.setText(Integer.toString(numProducPinesJ));
+        if ((numEnsamblador+producNumBotonesJ+producNumCamsJ+producNumPantJ+producNumPinesJ)<numeroMaximoEmpleadosJ) {
+            producNumPinesJ++;
+            ProductoresPines1.setText(Integer.toString(producNumPinesJ));
+            if(countdownPlantaJ<30){
+                producPins = new ProductoresPinesJ(1);
+                producPins.start();
+                pilaProductoresPinesJ.push(producPins);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
     }//GEN-LAST:event_BotonSumPines1ActionPerformed
 
     private void ProductoresPines1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductoresPines1ActionPerformed
@@ -885,9 +909,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosCams1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosCams1ActionPerformed
         // TODO add your handling code here:
-        if(numProducCamJ > 1){
-            numProducCamJ--;
-            ProductoresCams1.setText(Integer.toString(numProducCamJ));
+        if(producNumCamsJ > 1){
+            producNumCamsJ--;
+            ProductoresCams1.setText(Integer.toString(producNumCamsJ));
+            if(countdownPlantaJ<30){
+                pilaProductoresCamarasJ.peek().stopToggle();
+                pilaProductoresCamarasJ.pop();
+            }
         }
 
         else{
@@ -897,9 +925,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosPant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosPant1ActionPerformed
         // TODO add your handling code here:
-        if(numProducPantJ > 1){
-            numProducPantJ--;
-            ProductoresPant1.setText(Integer.toString(numProducPantJ));
+        if(producNumPantJ > 1){
+            producNumPantJ--;
+            ProductoresPant1.setText(Integer.toString(producNumPantJ));
+            if(countdownPlantaJ<30){
+                pilaProductoresPantallasJ.peek().stopToggle();
+                pilaProductoresPantallasJ.pop();
+            }
         }
         else{
             TextGerentePlanta1.setText("Despedido bro fuera de aqui wtf");
@@ -909,9 +941,13 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonMenosBotones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosBotones1ActionPerformed
         // TODO add your handling code here:
-        if(numProducBotJ > 1){
-            numProducBotJ--;
-            ProductoresB1.setText(Integer.toString(numProducPantJ));
+        if(producNumBotonesJ > 1){
+            producNumBotonesJ--;
+            ProductoresB1.setText(Integer.toString(producNumBotonesJ));
+            if(countdownPlantaJ<30){
+                pilaProductoresBotonesJ.peek().stopToggle();
+                pilaProductoresBotonesJ.pop();
+            }
         }
 
         else{
@@ -921,20 +957,50 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void BotonSumPant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumPant1ActionPerformed
         // TODO add your handling code here:
-        numProducPantJ++;
-        ProductoresPant1.setText(Integer.toString(numProducPantJ));
+        if ((numEnsamblador+producNumBotonesJ+producNumCamsJ+producNumPantJ+producNumPinesJ)<numeroMaximoEmpleadosJ) {
+            producNumPantJ++;
+            ProductoresPant1.setText(Integer.toString(producNumPantJ));
+            if(countdownPlantaJ<30){
+                producPantJ = new ProductoresPantallasJ(1);
+                producPantJ .start();
+                pilaProductoresPantallasJ.push(producPantJ);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
     }//GEN-LAST:event_BotonSumPant1ActionPerformed
 
     private void BotonSumCams1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumCams1ActionPerformed
         // TODO add your handling code here:
-        numProducCamJ++;
-        ProductoresCams1.setText(Integer.toString(numProducCamJ));
+        
+        if ((numEnsamblador+producNumBotonesJ+producNumCamsJ+producNumPantJ+producNumPinesJ)<numeroMaximoEmpleadosJ) {
+            producNumCamsJ++;
+            ProductoresCams1.setText(Integer.toString(producNumCamsJ));
+            if(countdownPlantaJ<30){
+                producPins = new ProductoresPinesJ(1);
+                producPins.start(); 
+                //Apilo cada thread a la pila  de productores botones
+                pilaProductoresPinesJ.push(producPins);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
     }//GEN-LAST:event_BotonSumCams1ActionPerformed
 
     private void BotonSumBotones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSumBotones1ActionPerformed
         // TODO add your handling code here:
-        numProducBotJ++;
-        ProductoresB1.setText(Integer.toString(numProducBotJ));
+        if ((numEnsamblador+producNumBotonesJ+producNumCamsJ+producNumPantJ+producNumPinesJ)<numeroMaximoEmpleadosJ) {
+            producNumBotonesJ++;
+            ProductoresB1.setText(Integer.toString(producNumBotonesJ));
+            
+            if(countdownPlantaJ<30){
+                producBotonesJ = new ProductoresBotonesJ(1);
+                producBotonesJ.start();
+                pilaProductoresBotonesJ.push(producBotonesJ);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Excedio el numero maximo de empleados");
+        }
     }//GEN-LAST:event_BotonSumBotones1ActionPerformed
 
     private void BotonMenosEnsam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosEnsam2ActionPerformed
@@ -1172,9 +1238,9 @@ public class InterfazPlantas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UltimoLote2ActionPerformed
 
-    private void GastosSalario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GastosSalario5ActionPerformed
+    private void GastosSalario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GastosSalario1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_GastosSalario5ActionPerformed
+    }//GEN-LAST:event_GastosSalario1ActionPerformed
 
     private void GananciasTotales2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GananciasTotales2ActionPerformed
         // TODO add your handling code here:
@@ -1217,33 +1283,42 @@ public class InterfazPlantas extends javax.swing.JFrame {
         
         tiempoDia =  Integer.parseInt(TiempoDias.getText()) ;
         
-        for (int i = 0; i < numEnsamJ; i++) {
-            ensamblador = new EnsambladoresJ(numEnsamJ);
+        for (int i = 0; i < numEnsambladoresM; i++) {
+            ensamblador = new EnsambladoresJ(numEnsambladoresM);
             ensamblador.start();
+            pilaEnsambladoresJ.push(ensamblador);
         }
         
-        for (int i = 0; i < numProducBotJ; i++) {
+        for (int i = 0; i < producNumBotonesJ; i++) {
             producBotonesJ = new ProductoresBotonesJ(i);
             producBotonesJ.start();
+            pilaProductoresBotonesJ.push(producBotonesJ);
         }
         
-        for (int i = 0; i < numProducPantJ; i++) {
+        for (int i = 0; i < producNumPantJ; i++) {
             producPantJ = new ProductoresPantallasJ(i);
             producPantJ.start();
+            pilaProductoresPantallasJ.push(producPantJ);
         }
         
-        for (int i = 0; i < numProducCamJ; i++) {
+        for (int i = 0; i < producNumCamsJ; i++) {
             producCamsJ = new ProductoresCamarasJ(i);
             producCamsJ.start();
+            //Apilo cada thread a la pila  de productores botones
+            pilaProductoresCamarasJ.push(producCamsJ);
         }
         
-        for (int i = 0; i < numProducPinesJ; i++) {
+        for (int i = 0; i < producNumPinesJ; i++) {
             producPins = new ProductoresPinesJ(i);
             producPins.start();
+            //Apilo cada thread a la pila  de productores botones
+            pilaProductoresPinesJ.push(producPins);
         }
         
         gerenteJ = new GerenteJ();
-        jefeJ = new JefeJ();
+        gerenteJ.start();
+        jefeJ = new JefeJ(1);
+        jefeJ.start();
         
         for (int i = 0; i < numProductoresBotones; i++) {
             
@@ -1322,10 +1397,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
             
         //}
-        for (int i = 0; i < numEnsamJ; i++) {
-            ensamblador = new EnsambladoresJ(numEnsamJ);
-            ensamblador.start();
-        }
     }//GEN-LAST:event_startActionPerformed
 
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
@@ -1359,10 +1430,41 @@ public class InterfazPlantas extends javax.swing.JFrame {
             
         }  
         
-        
+        //SE MATAN TODOS LOS THREADS
+        while(!pilaProductoresPantallasJ.isEmpty()){
+            pilaProductoresPantallasJ.peek().stopToggle();
+            pilaProductoresPantallasJ.pop();
+
+        }
+
+        while(!pilaProductoresBotonesJ.isEmpty()){
+            pilaProductoresBotonesJ.peek().stopToggle();
+            pilaProductoresBotonesJ.pop();
+
+        }
+
+        while(!pilaProductoresCamarasJ.isEmpty()){
+            pilaProductoresCamarasJ.peek().stopToggle();
+          pilaProductoresCamarasJ.pop();
+
+        }
+
+        while(!pilaProductoresPinesJ.isEmpty()){
+           pilaProductoresPinesJ.peek().stopToggle();
+           pilaProductoresPinesJ.pop();
+
+        }   
+        while(!pilaEnsambladoresJ.isEmpty()){
+         pilaEnsambladoresJ.peek().stopToggle();
+         pilaEnsambladoresJ.pop();
+
+        }  
         //mato los threads gerente y jefe
         Classes.Main.ThreadGerenteM.stopToggle();
         Classes.Main.ThreadJefeM.stopToggle();
+        Classes.Main.gerenteJ.stopToggle();
+        Classes.Main.jefeJ.stopToggle();
+
     }//GEN-LAST:event_stopActionPerformed
 
     private void countdownMASSIMOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countdownMASSIMOActionPerformed
@@ -1379,6 +1481,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
 
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
         // TODO add your handling code here:
+        datum.getDataforDashboard();
+
         InterfazDash.setVisible(true);
     }//GEN-LAST:event_DashboardActionPerformed
                                    
@@ -1454,8 +1558,8 @@ public class InterfazPlantas extends javax.swing.JFrame {
     public static javax.swing.JTextField Ensambladores2;
     public static javax.swing.JTextField GananciasTotales1;
     public static javax.swing.JTextField GananciasTotales2;
+    public static javax.swing.JTextField GastosSalario1;
     public static javax.swing.JTextField GastosSalario2;
-    public static javax.swing.JTextField GastosSalario5;
     public static javax.swing.JTextField JefePerdido1;
     public static javax.swing.JTextField JefePerdido2;
     public static javax.swing.JTextField ProductoresB1;

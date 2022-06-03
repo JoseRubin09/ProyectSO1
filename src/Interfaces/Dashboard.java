@@ -4,6 +4,15 @@
  */
 package Interfaces;
 
+import static Classes.Main.promedioGanancias1;
+import static Classes.Main.promedioGanancias2;
+import static Classes.Main.promedioGastos1;
+import static Classes.Main.promedioGastos2;
+import static Classes.Main.promedioNumTotalTelef1;
+import static Classes.Main.promedioNumTotalTelef2;
+import static Classes.Main.promedioTelefGanancias1;
+import static Classes.Main.promedioTelefGanancias2;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import org.jfree.chart.ChartFactory;
@@ -48,6 +57,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 510, 310));
 
+
         generar.setText("Generar");
         generar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,10 +84,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
         // TODO add your handling code here:
-        
         //Telefonos vendidos
-        int telefonosProducidosPlanta1=34;
-        int telefonosProducidosPlanta2=20;
+        int telefonosProducidosPlanta1=promedioNumTotalTelef1;
+        int telefonosProducidosPlanta2=promedioNumTotalTelef2;
        
         
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
@@ -92,6 +101,7 @@ public class Dashboard extends javax.swing.JFrame {
                 "Telefonos Producidos", 
                 "Plantas", 
                 "Numero de telefonos", 
+
                 datos, 
                 PlotOrientation.VERTICAL, 
                 true, 
@@ -103,7 +113,7 @@ public class Dashboard extends javax.swing.JFrame {
         ChartPanel panel = new ChartPanel(grafico_barras);
         panel.setMouseWheelEnabled(true);
         panel.setPreferredSize(new Dimension(500,300));
-        
+
         jPanel2.setLayout(new BorderLayout());
         jPanel2.add(panel,BorderLayout.NORTH);
         
@@ -112,8 +122,8 @@ public class Dashboard extends javax.swing.JFrame {
         
         
         //Ganancia telefonos
-        int gananciaTelefonosPlanta1=340;
-        int gananciaTelefonosPlanta2=60;
+        int gananciaTelefonosPlanta1=promedioTelefGanancias1;
+        int gananciaTelefonosPlanta2=promedioTelefGanancias2;
        
         
         DefaultCategoryDataset datos2 = new DefaultCategoryDataset();
@@ -147,8 +157,8 @@ public class Dashboard extends javax.swing.JFrame {
         repaint();
         
         //Gastos Sueldos
-        int gastosSueldosPlanta1=3340;
-        int gastosSueldosPlanta2=60;
+        int gastosSueldosPlanta1 = promedioGastos1;
+        int gastosSueldosPlanta2= promedioGastos2;
        
         
         DefaultCategoryDataset datos3 = new DefaultCategoryDataset();
@@ -183,8 +193,8 @@ public class Dashboard extends javax.swing.JFrame {
         
         
         //Ganancia Neta 
-        int gananciaNetaPlanta1=333;
-        int gananciaNetaPlanta2=800;
+        int gananciaNetaPlanta1=promedioGanancias1;
+        int gananciaNetaPlanta2=promedioGanancias2;
        
         
         DefaultCategoryDataset datos4 = new DefaultCategoryDataset();
@@ -268,5 +278,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+
     // End of variables declaration//GEN-END:variables
 }

@@ -1,12 +1,20 @@
 [{
     "tiempoDia": "3",
     "countdown": "30",
-    "almacenBotonesPlanta1": "3",
-    "almacenPantsPlanta1": "3",
-    "almacenCamsPlanta1": "3",
+    "almacenBotonesPlanta1": "45",
+    "almacenPantsPlanta1": "40",
+    "almacenCamsPlanta1": "20",
     "ensambladoresPlanta1": "3",
-    "almacenBotonesPlanta2": "0",
-    "almacenPantsPlanta2": "0",
-    "almacenCamsPlanta2": "0",
-    "ensambladoresPlanta2": "5"
+    "almacenBotonesPlanta2": "45",
+    "almacenPantsPlanta2": "40",
+    "almacenCamsPlanta2": "20",
+    "ensambladoresPlanta2": "5",
+    "producBotones1":"2",
+    "producBotones2":"2",
+    "producCamaras1":"2",
+    "producCamaras2":"2",
+    "producPantallas1":"2",
+    "producPantallas2":"2",
+    "producPines1":"2",
+    "producPines2":"2"
 }]

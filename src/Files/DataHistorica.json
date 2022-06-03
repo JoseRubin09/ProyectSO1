@@ -1,18 +1,1 @@
-[{
-    "tiempoDia": "1",
-    "countdown": "1",
-    "almacenBotonesPlanta1": "3",
-    "producBotonesPlanta1": "3",
-    "almacenPantsPlanta1": "3",
-    "producPantsPlanta1": "3",
-    "almacenCamsPlanta1": "3",
-    "producCamsPlanta1": "3",
-    "ensambladoresPlanta1": "3",
-    "almacenBotonesPlanta2": "3",
-    "producBotonesPlanta2": "3",
-    "almacenPantsPlanta2": "3",
-    "producPantsPlanta2": "3",
-    "almacenCamsPlanta2": "3",
-    "producCamsPlanta2": "3",
-    "ensambladoresPlanta2": "3"
-}]
+[{"numTelefonosTotal2":["9","16","16","16","4","4","1","16","12","16"],"numTelefonosTotal1":["11","22","22","27","16","16","16","22","16","16"],"GastosSalario1":["7242","7630","7570","7556","7514","7514","7514","7424","7596","7566"],"GananciaNeta1":["-642","5570","5630","8644","2086","2086","2086","5776","2004","2034"],"TelefonosGanancia1":["6600","13200","13200","16200","9600","13200","9600","9600"],"perdidaJefe2":["100","214","216","218","190","214","222","216"],"TelefonosGanancia2":["10791","19184","19184","19184","4796","19184","14388","19184"],"perdidaJefe1":["200","200","230","214","226","210","204"],"GastosSalario2":["7488","7436","7434","7404","7432","7316","7398","7404"],"GananciaNeta2":["3303","11748","11750","11780","-2636","-2636","11868","6990","11780"]}]
