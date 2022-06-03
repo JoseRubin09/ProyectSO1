@@ -32,6 +32,7 @@ public class ProductoresPinesJ extends Thread{
     public void run(){
         while (this.stop){
             try {
+                Main.semPinesJ.acquire();
                 Main.mutexPins.acquire();
                 Main.numPines++;
                 InterfazPlantas.AlmacenPinesP1.setText(Integer.toString(Main.numPines));
