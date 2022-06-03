@@ -39,8 +39,10 @@ public class EnsambladoresJ extends Thread{
                     Main.mutexPins.acquire();
                     Main.numPines--;
                     InterfazPlantas.AlmacenPinesP1.setText(Integer.toString(Main.numPines));
+                    Main.semPinesJ.release();
                     Main.mutexPins.release();
                     
+                    Main.mutexBotons.acquire();
                     Main.maxBotonesJ = Main.maxBotonesJ - 2;
                     Main.semBotonesJ.release(2);
                     InterfazPlantas.AlmacenBotonesP1.setText(Integer.toString(Main.maxBotonesJ));
