@@ -92,7 +92,7 @@ public class GetDatos {
     
     public void getData(){
     
-        JSONArray data = txtAction.readJson("C:\\Users\\Jose Rubin\\Desktop\\Projects\\ProyectSO1\\src\\Files\\DataPlantas.json");
+        JSONArray data = txtAction.readJson("DataPlantas.json");
         Map<String, Object> map = (Map<String, Object>) data.get(0);
         for (String key : map.keySet())
             switch(key){
@@ -168,7 +168,7 @@ public class GetDatos {
     
     public void getDataforDashboard(){
         
-        JSONArray data2 = txtAction.readJson("C:\\Users\\Jose Rubin\\Desktop\\Projects\\ProyectSO1\\src\\Files\\DataHistorica.json");
+        JSONArray data2 = txtAction.readJson("DataHistorica.json");
         Map<String, Object> map2 = (Map<String, Object>) data2.get(0);
         for (String key2 : map2.keySet())
             switch(key2){
