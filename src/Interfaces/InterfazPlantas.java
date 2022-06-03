@@ -71,6 +71,7 @@ import static Classes.Main.pilaProductoresCamarasM;
 import static Classes.Main.pilaProductoresPantallasJ;
 import static Classes.Main.pilaProductoresPantallasM;
 import static Classes.Main.pilaProductoresPinesJ;
+
 import static Classes.Main.pilaProductoresPinesM;
 import static Classes.Main.producBotonesJ;
 import static Classes.Main.producCamsJ;
@@ -107,7 +108,6 @@ public class InterfazPlantas extends javax.swing.JFrame {
 //    ARREGLAR VARIABLEKS GLOBALES
     public int countdown;
     public static GetDatos datum = new GetDatos();
-
     public static Dashboard InterfazDash= new Dashboard();
     public InterfazPlantas() {
         initComponents();
@@ -120,6 +120,10 @@ public class InterfazPlantas extends javax.swing.JFrame {
         AlmacenBotonesP1.setEditable(false);
         
         this.countdown = 30;
+        
+        
+        
+        
         
     }
 
@@ -1460,6 +1464,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
         Classes.Main.ThreadJefeM.stopToggle();
         Classes.Main.gerenteJ.stopToggle();
         Classes.Main.jefeJ.stopToggle();
+
     }//GEN-LAST:event_stopActionPerformed
 
     private void countdownMASSIMOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countdownMASSIMOActionPerformed
@@ -1477,6 +1482,7 @@ public class InterfazPlantas extends javax.swing.JFrame {
     private void DashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardActionPerformed
         // TODO add your handling code here:
         datum.getDataforDashboard();
+
         InterfazDash.setVisible(true);
     }//GEN-LAST:event_DashboardActionPerformed
                                    

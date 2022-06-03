@@ -91,7 +91,6 @@ public class JefeM extends Thread {
                     pilaProductoresPantallasM.pop();
                 
                 }
-        
                 while(!pilaProductoresBotonesM.isEmpty()){
                     pilaProductoresBotonesM.peek().stopToggle();
                     pilaProductoresBotonesM.pop();
@@ -120,7 +119,6 @@ public class JefeM extends Thread {
                 Classes.Main.ThreadGerenteM.stopToggle();
                 Classes.Main.ThreadJefeM.stopToggle();
                 writeNewData.writeData();
-
             }
 
     

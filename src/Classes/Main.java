@@ -57,6 +57,8 @@ public class Main {
     public static int numEnsamM;
     
     
+    
+    
     //Productor Botones yaaa
     public static Semaphore semBotones = new Semaphore(45);
     public static ProductoresBotonesM ThreadBotones;
@@ -109,7 +111,6 @@ public class Main {
     public static Stack<ProductoresBotonesM> pilaProductoresBotonesM= new Stack<ProductoresBotonesM>();
     public static Stack<ProductoresPinesM> pilaProductoresPinesM= new Stack<ProductoresPinesM>();
     public static Stack<EnsambladoresM> pilaEnsambladoresM= new Stack<EnsambladoresM>();
-    
     //Pila productores jose
     public static Stack<ProductoresPantallasJ> pilaProductoresPantallasJ= new Stack<ProductoresPantallasJ>();
     public static Stack<ProductoresCamarasJ> pilaProductoresCamarasJ= new Stack<ProductoresCamarasJ>();
@@ -183,6 +184,7 @@ public class Main {
         
         datum.getData();
 //        writeNewData.writeData();
+
         InterfazGrafica.setVisible(true);
     }
 }
