@@ -5,7 +5,10 @@
  */
 package Classes;
 
+import Interfaces.InterfazPlantas;
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,17 +16,30 @@ import java.util.concurrent.Semaphore;
  */
 public class ProductoresCamarasJ extends Thread{
     
-    public Semaphore semMain;
-    public Semaphore mutex;
     public boolean stop;
-    public ProductoresCamarasJ (Semaphore semMain, int numero){
-        this.semMain = semMain;
+    public int numero;
+    public ProductoresCamarasJ (int threadNum){
         this.stop = true;
-        
+        this.numero = threadNum;
+    }
+    
+    public void stopToggle(){
+        this.stop = !this.stop;
     }
     
     @Override
     public void run(){
-        System.out.println("A");
+        while (this.stop){
+            try {
+                Main.semCamarasJ.acquire(1);
+                Main.mutexCams.acquire();
+                Main.maxCamsJ++;
+                InterfazPlantas.AlmacenCamsP1.setText(Integer.toString(Main.maxCamsJ));
+                Main.mutexCams.release();
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ProductoresCamarasJ.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

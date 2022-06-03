@@ -5,25 +5,39 @@
  */
 package Classes;
 
-import java.util.concurrent.Semaphore;
-
+import Interfaces.InterfazPlantas;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Jose Rubin
  */
 public class ProductoresBotonesJ extends Thread{
     
-    public Semaphore semMain;
-    public Semaphore mutex;
     public boolean stop;
-    public ProductoresBotonesJ (Semaphore semMain, int numero){
-        this.semMain = semMain;
+    public int numero;
+    public ProductoresBotonesJ (int threadNum){
         this.stop = true;
-        
+        this.numero = threadNum;
     }
     
+    public void stopToggle(){
+        this.stop = !this.stop;
+    }
     @Override
+    
     public void run(){
-        System.out.println("A");
+        while (this.stop){
+            try {
+                Main.mutexBotons.acquire();
+                Main.semBotonesJ.acquire();
+                Main.maxBotonesJ++;
+                InterfazPlantas.AlmacenBotonesP1.setText(Integer.toString(Main.maxBotonesJ));
+                Main.mutexBotons.release();
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ProductoresBotonesJ.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
