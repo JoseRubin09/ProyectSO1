@@ -48,7 +48,7 @@ public class WriteFile {
     String s = currentRelativePath.toAbsolutePath().toString();
 
     public void writeData(){
-        JSONArray data3 = txtAction.readJson("/Users/massimo/SO/PROYECTO/ProyectSO1/src/Files/DataHistorica.json");
+        JSONArray data3 = txtAction.readJson("DataHistorica.json");
         Map<String, Object> map2 = (Map<String, Object>) data3.get(0);
         JSONObject obj = new JSONObject();
         JSONArray newJson = new JSONArray();
@@ -108,8 +108,7 @@ public class WriteFile {
         newJson.add(obj);
         
         try {
-//            FileWriter file = new FileWriter(new File(System.getProperty("user.dir"), "DataHistorica.json"));            
-            FileWriter file = new FileWriter("/Users/massimo/SO/PROYECTO/ProyectSO1/src/Files/DataHistorica.json");            
+            FileWriter file = new FileWriter(new File(System.getProperty("user.dir"), "DataHistorica.json"));            
             file.write(newJson.toJSONString());
             file.close();
         } catch (IOException e) {
