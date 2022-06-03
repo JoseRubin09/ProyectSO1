@@ -1,5 +1,5 @@
 [{
-    "tiempoDia": "1",
+    "tiempoDia": "3",
     "countdown": "30",
     "almacenBotonesPlanta1": "3",
     "almacenPantsPlanta1": "3",
@@ -8,5 +8,5 @@
     "almacenBotonesPlanta2": "0",
     "almacenPantsPlanta2": "0",
     "almacenCamsPlanta2": "0",
-    "ensambladoresPlanta2": "1"
+    "ensambladoresPlanta2": "5"
 }]
